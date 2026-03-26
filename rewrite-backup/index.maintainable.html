@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Martian Mono</title>
+    <meta
+      name="description"
+      content="Martian Mono is a monospaced version of the Martian Grotesk font for code style design."
+    />
+    <link rel="stylesheet" href="./assets/style.css" />
+  </head>
+  <body>
+    <div class="preloader" data-preloader>
+      <div class="preloader__label">Martian Mono</div>
+      <div class="preloader__value" id="preloader-value">0%</div>
+    </div>
+
+    <nav class="rail-nav" aria-label="Section index">
+      <a href="#top" data-section-link="top">// [ _ ]</a>
+      <a href="#about" data-section-link="about">// [about]</a>
+      <a href="#creator" data-section-link="creator">// [Creator]</a>
+      <a href="#demo1" data-section-link="demo1">// [demo_1]</a>
+      <a href="#symbols" data-section-link="symbols">// [symbols]</a>
+      <a href="#variable" data-section-link="variable">// [variable_1]</a>
+      <a href="#playground" data-section-link="playground">// [variable_2]</a>
+      <a href="#demo2" data-section-link="demo2">// [demo_2]</a>
+      <a href="#footer" data-section-link="footer">// [footer]</a>
+    </nav>
+
+    <header class="site-header">
+      <a class="site-header__brand" href="#top">Martian Mono</a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="#about">about</a>
+        <a href="#creator">creator</a>
+        <a href="#symbols">symbols</a>
+        <a href="#variable">variable</a>
+        <a href="#playground">playground</a>
+        <a href="#footer">download</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero section">
+        <div class="hero__grid">
+          <div class="hero__meta reveal">
+            <div class="eyebrow">[ Evil Martians ]</div>
+            <p class="hero__lede">
+              monospaced version of the Martian Grotesk font
+            </p>
+            <div class="hero__year">Year: _2024</div>
+          </div>
+
+          <div class="hero__title reveal reveal--delay-1">
+            <p class="hero__kicker">The first Evil Martians open_source_font</p>
+            <h1>
+              <span>Martian</span>
+              <span>Mono</span>
+            </h1>
+            <p class="hero__subline">font by Roman_Shamin</p>
+            <div class="hero__actions">
+              <a class="button button--primary" href="https://fonts.google.com/specimen/Martian+Mono" target="_blank" rel="noreferrer">get mono</a>
+              <a class="button button--ghost" href="#symbols">explore symbols</a>
+            </div>
+          </div>
+
+          <aside class="hero__features reveal reveal--delay-2">
+            <article class="feature-card">
+              <span>[ 001 ]</span>
+              <strong>Aesthetics</strong>
+            </article>
+            <article class="feature-card">
+              <span>[ 002 ]</span>
+              <strong>Variable</strong>
+            </article>
+            <article class="feature-card">
+              <span>[ 003 ]</span>
+              <strong>Dev Experience</strong>
+            </article>
+            <article class="feature-card">
+              <span>[ 004 ]</span>
+              <strong>Legibility</strong>
+            </article>
+          </aside>
+        </div>
+
+        <div class="hero__frame reveal reveal--delay-3">
+          <div class="hero__frame-panel">
+            <div class="hero__frame-caption">console</div>
+            <pre class="hero__console"><code>npm install martian-mono
+font-family: "Martian Mono", monospace;
+weights: 100..800
+languages: [253]</code></pre>
+          </div>
+          <div class="hero__frame-panel hero__frame-panel--accent">
+            <div class="hero__frame-caption">// choose_your_option</div>
+            <div class="hero__nav-hints">
+              <span>[about]</span>
+              <span>[creator]</span>
+              <span>[symbols]</span>
+              <span>[variable]</span>
+              <span>[demo_2]</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="about section" id="about">
+        <div class="section-heading reveal">
+          <span class="eyebrow">about</span>
+          <h2>Mono is brutal, readable, and built for interface work.</h2>
+        </div>
+        <div class="about__grid">
+          <article class="about__card reveal">
+            <div class="about__label">[ 01 ] system</div>
+            <p>
+              Martian Mono inherits Martian Grotesk’s sharp personality while
+              staying disciplined enough for product UI, code snippets, and
+              dense interface text.
+            </p>
+          </article>
+          <article class="about__card reveal reveal--delay-1">
+            <div class="about__label">[ 02 ] variable</div>
+            <p>
+              It ships as a variable mono family with width and weight range,
+              so one type system can cover display, interface, and technical
+              copy without style drift.
+            </p>
+          </article>
+          <article class="about__card reveal reveal--delay-2">
+            <div class="about__label">[ 03 ] dev_xp</div>
+            <p>
+              Clear punctuation, firm counters, and stable rhythm keep the font
+              useful in terminals, design systems, and multilingual product
+              surfaces.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="creator section" id="creator">
+        <div class="creator__portrait reveal">
+          <img
+            src="./assets/media/creator-border.png"
+            alt="Decorative frame"
+          />
+        </div>
+        <div class="creator__content reveal reveal--delay-1">
+          <span class="eyebrow">creator</span>
+          <h2>Roman Shamin</h2>
+          <p class="creator__title">Head of Design</p>
+          <p class="creator__meta">Earth, Lisbon 38°42′49″ 9°08′21″</p>
+          <p class="creator__text">
+            I love to build, and when I discovered how painful it is to work
+            with fonts made for print on web and mobile, I created Martian
+            Grotesk and Martian Mono, two modern variable font families,
+            carefully optimized for use on screens.
+          </p>
+          <a
+            class="button button--ghost"
+            href="https://x.com/romanshamin"
+            target="_blank"
+            rel="noreferrer"
+            >twitter</a
+          >
+        </div>
+      </section>
+
+      <section class="demo-frame section" id="demo1">
+        <div class="demo-frame__panel reveal">
+          <div class="demo-frame__chrome">
+            <span></span><span></span><span></span>
+          </div>
+          <div class="demo-frame__viewport">
+            <div class="demo-frame__word">MARTIAN MONO</div>
+            <div class="demo-frame__subword">BRUTAL_MONO_FOR_INTERFACES</div>
+          </div>
+        </div>
+        <div class="demo-frame__meta reveal reveal--delay-1">
+          <div class="demo-frame__line"></div>
+          <div class="demo-frame__copy">
+            <span class="eyebrow">demo_1</span>
+            <p>Metrics equilibrium, readability, intelligibility, convenience.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="symbols section" id="symbols">
+        <div class="section-heading reveal">
+          <span class="eyebrow">symbols</span>
+          <h2>languages available <span>[ 253 ]</span></h2>
+        </div>
+
+        <div class="symbols__panel reveal">
+          <div class="symbols__controls" data-weight-controls>
+            <button type="button" data-weight="100">_thin</button>
+            <button type="button" data-weight="200">_exstralight</button>
+            <button type="button" data-weight="300">_light</button>
+            <button type="button" data-weight="400">_regular</button>
+            <button type="button" data-weight="500">_medium</button>
+            <button type="button" data-weight="600">_semibold</button>
+            <button type="button" data-weight="700">_bold</button>
+            <button type="button" data-weight="800">_exstrabold</button>
+          </div>
+
+          <div class="symbols__display">
+            <div class="symbols__glyph" data-glyph-display>A</div>
+          </div>
+
+          <div class="symbols__groups" data-glyph-groups></div>
+        </div>
+      </section>
+
+      <section class="variable section" id="variable">
+        <div class="variable__headline reveal">
+          <div class="variable__word">
+            <div class="variable__tile"><img src="./assets/media/img-m.webp" alt="" /><span>M</span></div>
+            <div class="variable__tile"><img src="./assets/media/img-o.webp" alt="" /><span>O</span></div>
+            <div class="variable__tile"><img src="./assets/media/img-n.webp" alt="" /><span>N</span></div>
+            <div class="variable__tile"><img src="./assets/media/img-o.webp" alt="" /><span>O</span></div>
+          </div>
+          <div class="variable__word variable__word--wide">
+            <div class="variable__tile"><img src="./assets/media/img-v.webp" alt="" /><span>V</span></div>
+            <div class="variable__tile"><img src="./assets/media/img-a.webp" alt="" /><span>A</span></div>
+            <div class="variable__tile"><img src="./assets/media/img-r.webp" alt="" /><span>R</span></div>
+            <div class="variable__tile"><img src="./assets/media/img-i.webp" alt="" /><span>I</span></div>
+            <div class="variable__tile"><img src="./assets/media/img-a.webp" alt="" /><span>A</span></div>
+            <div class="variable__tile"><img src="./assets/media/img-b.webp" alt="" /><span>B</span></div>
+            <div class="variable__tile"><img src="./assets/media/img-l.webp" alt="" /><span>L</span></div>
+            <div class="variable__tile"><img src="./assets/media/img-e.webp" alt="" /><span>E</span></div>
+          </div>
+          <div class="variable__word">
+            <div class="variable__tile"><img src="./assets/media/img-f.webp" alt="" /><span>F</span></div>
+            <div class="variable__tile"><img src="./assets/media/img-so.webp" alt="" /><span>O</span></div>
+            <div class="variable__tile"><img src="./assets/media/img-n.webp" alt="" /><span>N</span></div>
+            <div class="variable__tile"><img src="./assets/media/img-t.webp" alt="" /><span>T</span></div>
+          </div>
+        </div>
+
+        <div class="variable__meta reveal reveal--delay-1">
+          <div>
+            <span class="eyebrow">4 styles on</span>
+            <strong>the width</strong>
+          </div>
+          <div>
+            <span class="eyebrow">VARIABLE weights</span>
+            <strong>[ 7 ]</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="specimen section" id="demo2">
+        <div class="section-heading reveal">
+          <span class="eyebrow">demo_2</span>
+          <h2>
+            Character-forming plastic device: protruding foreheads and jaws of
+            signs with terminals.
+          </h2>
+        </div>
+        <div class="specimen__letters reveal">
+          <div>a</div>
+          <div>x</div>
+          <div>q</div>
+          <div>e</div>
+          <div>s</div>
+          <div>b</div>
+        </div>
+      </section>
+
+      <section class="playground section" id="playground">
+        <div class="section-heading reveal">
+          <span class="eyebrow">variable_2</span>
+          <h2>Enter text in different languages</h2>
+        </div>
+
+        <div class="playground__layout">
+          <div class="playground__controls reveal">
+            <label class="field">
+              <span>weight</span>
+              <select data-control="weight">
+                <option value="200">exstralight</option>
+                <option value="100">thin</option>
+                <option value="300">light</option>
+                <option value="400">regular</option>
+                <option value="500">medium</option>
+                <option value="600">semibold</option>
+                <option value="700">bold</option>
+                <option value="800">exstrabold</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>size px</span>
+              <input data-control="size" type="range" min="32" max="160" value="88" />
+            </label>
+
+            <label class="field">
+              <span>letter spacing px</span>
+              <input data-control="spacing" type="range" min="-4" max="24" value="2" />
+            </label>
+
+            <label class="field">
+              <span>line height</span>
+              <input data-control="leading" type="range" min="0.9" max="1.8" step="0.05" value="1.05" />
+            </label>
+
+            <div class="field">
+              <span>align</span>
+              <div class="align-buttons" data-align-controls>
+                <button type="button" data-align="left">left</button>
+                <button type="button" data-align="center" class="is-active">center</button>
+                <button type="button" data-align="right">right</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="playground__stage reveal reveal--delay-1">
+            <textarea data-playground-input spellcheck="false">Enter text
+Entrez le texte
+Введите текст
+输入文本</textarea>
+            <div class="playground__output" data-playground-output>Enter text
+Entrez le texte
+Введите текст
+输入文本</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="objects section">
+        <div class="objects__grid">
+          <article class="object-card reveal">
+            <div class="object-card__symbol">?#[ ]</div>
+            <h3>_01 An object: Package</h3>
+            <p>material: plastic</p>
+            <p>size_25x15</p>
+          </article>
+          <article class="object-card reveal reveal--delay-1">
+            <div class="object-card__symbol">?/}}{</div>
+            <h3>_02 An object: bottle</h3>
+            <p>material: metal</p>
+            <p>size_31x8</p>
+          </article>
+          <article class="object-card reveal reveal--delay-2">
+            <div class="object-card__symbol">?##$%-//</div>
+            <h3>_03 An object: id card</h3>
+            <p>material: paper</p>
+            <p>size_8x12</p>
+          </article>
+          <article class="object-card reveal reveal--delay-3">
+            <div class="object-card__symbol">_05</div>
+            <h3>An object: suitcase</h3>
+            <p>material: plastic</p>
+            <p>size_20x8</p>
+          </article>
+          <article class="object-card reveal">
+            <div class="object-card__symbol">?##$%-//</div>
+            <h3>_04 An object: music column</h3>
+            <p>material: plastic</p>
+            <p>size_20x8</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="outro section">
+        <div class="outro__headline reveal">
+          <span>Mono</span>
+          <span class="accent">is not</span>
+          <span>the limit</span>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer section" id="footer">
+      <div class="footer__cards">
+        <article class="footer-card footer-card--mono reveal">
+          <span class="eyebrow">download_font</span>
+          <h2>MARTIAN MONO</h2>
+          <p>free font</p>
+          <p>2023</p>
+          <a
+            class="button button--primary"
+            href="https://fonts.google.com/specimen/Martian+Mono"
+            target="_blank"
+            rel="noreferrer"
+            >get mono</a
+          >
+        </article>
+        <article class="footer-card footer-card--dark footer-card--grotesk reveal reveal--delay-1">
+          <span class="eyebrow">support_our_project</span>
+          <h2>MARTIAN GROTESK</h2>
+          <p>trial</p>
+          <p>free</p>
+          <a
+            class="button button--ghost"
+            href="https://www.myfonts.com/collections/martian-grotesk-font-martian-fonts"
+            target="_blank"
+            rel="noreferrer"
+            >buy font</a
+          >
+        </article>
+      </div>
+
+      <div class="footer__bottom">
+        <a href="https://koji.team/" target="_blank" rel="noreferrer">Made by Koji</a>
+        <span>2024</span>
+      </div>
+    </footer>
+
+    <script type="module" src="./assets/main.js"></script>
+  </body>
+</html>
