@@ -2090,10 +2090,10 @@ function initDemo2SectionAnimations() {
   const desktopText = section.parentElement?.querySelector(".s9-text");
   const mobileText = section.parentElement?.querySelector(".s9-text-mob");
   const desktopTextItems = desktopText
-    ? Array.from(desktopText.querySelectorAll(".s9-text-item"))
+    ? Array.from(desktopText.querySelectorAll(".s9-text-item > .s9-p"))
     : [];
   const mobileTextItems = mobileText
-    ? Array.from(mobileText.querySelectorAll(".s9-text-item"))
+    ? Array.from(mobileText.querySelectorAll(".s9-text-item > .s9-p"))
     : [];
   const lineItems = Array.from(section.querySelectorAll(".s9__container-line"));
   const smallHoverContainers = Array.from(
@@ -2424,6 +2424,168 @@ function initDemo2SectionAnimations() {
   window.addEventListener("resize", handleDemo2Resize);
 }
 
+function initFooterAnimations() {
+  const footerContainer = document.querySelector(".footer__container");
+  if (!footerContainer) return;
+  const footerScrollStartOffset = 100;
+
+  const leftCard = footerContainer.querySelector(".footer__card-item.margin._1");
+  const rightCard = footerContainer.querySelector(".footer__card-item._2");
+  const footerLinks = footerContainer.querySelector(".footer__links");
+  const blackLeft = footerContainer.querySelector(".footer__lines-item-1-black");
+  const rightLine = footerContainer.querySelector(".footer__lines-item-2");
+  const footerCards = Array.from(
+    footerContainer.querySelectorAll(".footer__card-item"),
+  );
+
+  footerCards.forEach((card) => {
+    const hoverLayer = card.querySelector(".bt-orange__hover");
+    const monoTitle = card.querySelector(".p-big-mono");
+    const groteskTitle = card.querySelector(".p-big-grotesk");
+
+    if (hoverLayer) {
+      hoverLayer.style.opacity = "0";
+      hoverLayer.style.transition = "opacity 200ms ease-out";
+    }
+    if (monoTitle) {
+      monoTitle.style.color = "#fff";
+      monoTitle.style.transition = "color 300ms ease";
+    }
+    if (groteskTitle) {
+      groteskTitle.style.color = "#fff";
+      groteskTitle.style.transition = "color 300ms ease";
+    }
+
+    if (window.innerWidth >= 992) {
+      card.addEventListener("mouseenter", () => {
+        if (hoverLayer) hoverLayer.style.opacity = "1";
+        if (monoTitle) monoTitle.style.color = "#E43C0C";
+        if (groteskTitle) groteskTitle.style.color = "#E43C0C";
+      });
+
+      card.addEventListener("mouseleave", () => {
+        if (hoverLayer) hoverLayer.style.opacity = "0";
+        if (monoTitle) monoTitle.style.color = "#fff";
+        if (groteskTitle) groteskTitle.style.color = "#fff";
+      });
+    }
+  });
+
+  let rafId = 0;
+
+  function getFooterTargetProgress() {
+    const rect = footerContainer.getBoundingClientRect();
+    const viewportHeight = window.innerHeight || 1;
+    return clamp(
+      (-rect.top) / viewportHeight,
+      0,
+      1,
+    ) * 100;
+  }
+
+  function renderFooterAnimations(progress) {
+    const leftX = resolveKeyframedValue(progress, [
+      { progress: 0, value: -107 },
+      { progress: 35, value: 0 },
+    ]);
+    const rightX = resolveKeyframedValue(progress, [
+      { progress: 0, value: 107 },
+      { progress: 35, value: 0 },
+    ]);
+
+    if (leftCard) {
+      leftCard.style.transform = `translate3d(${leftX}%, 0px, 0px)`;
+    }
+    if (rightCard) {
+      rightCard.style.transform = `translate3d(${rightX}%, 0px, 0px)`;
+    }
+
+    if (blackLeft) {
+      if (progress < 32.9) {
+        blackLeft.style.opacity = "";
+      } else if (progress < 33) {
+        blackLeft.style.opacity = "1";
+      } else {
+        blackLeft.style.opacity = "0";
+      }
+    }
+    if (rightLine) {
+      if (progress < 32.9) {
+        rightLine.style.opacity = "";
+      } else if (progress < 33) {
+        rightLine.style.opacity = "1";
+      } else {
+        rightLine.style.opacity = "0";
+      }
+    }
+
+    if (footerLinks) {
+      const linksOpacity = resolveKeyframedValue(progress, [
+        { progress: 0, value: 0 },
+        { progress: 36, value: 0 },
+        { progress: 37, value: 1 },
+      ]);
+      footerLinks.style.opacity = `${linksOpacity}`;
+    }
+  }
+
+  function applyFooterAnimations() {
+    rafId = 0;
+    renderFooterAnimations(getFooterTargetProgress());
+  }
+
+  function requestApplyFooterAnimations() {
+    if (rafId) return;
+    rafId = requestAnimationFrame(applyFooterAnimations);
+  }
+
+  renderFooterAnimations(getFooterTargetProgress());
+  window.addEventListener("scroll", requestApplyFooterAnimations, {
+    passive: true,
+  });
+  window.addEventListener("resize", requestApplyFooterAnimations);
+}
+
+function initButtonHoverEffects() {
+  const isDesktop = (window.innerWidth || 0) >= 992;
+
+  document.querySelectorAll(".bt-orange").forEach((button) => {
+    const hoverLayer = button.querySelector(".bt-orange__hover");
+    if (!hoverLayer) return;
+
+    hoverLayer.style.opacity = "0";
+    hoverLayer.style.transition = "opacity 200ms ease-out";
+
+    if (!isDesktop) return;
+
+    button.addEventListener("mouseenter", () => {
+      hoverLayer.style.opacity = "1";
+    });
+
+    button.addEventListener("mouseleave", () => {
+      hoverLayer.style.opacity = "0";
+    });
+  });
+
+  document.querySelectorAll(".bt-black").forEach((button) => {
+    const hoverLayer = button.querySelector(".bt-black-hover");
+    if (!hoverLayer) return;
+
+    hoverLayer.style.opacity = "0";
+    hoverLayer.style.transition = "opacity 200ms ease-out";
+
+    if (!isDesktop) return;
+
+    button.addEventListener("mouseenter", () => {
+      hoverLayer.style.opacity = "1";
+    });
+
+    button.addEventListener("mouseleave", () => {
+      hoverLayer.style.opacity = "0";
+    });
+  });
+}
+
 function initMenuPopup() {
   const menuPopup = document.querySelector(".menu-popup");
   const openButtons = document.querySelectorAll("[data-menu-open]");
@@ -2718,6 +2880,8 @@ document.addEventListener("DOMContentLoaded", () => {
   initTextControls();
   initVariable2Dropdown();
   initDemo2SectionAnimations();
+  initFooterAnimations();
+  initButtonHoverEffects();
   initPreloaderSequence();
   initAnchorButtons();
   initLenisAndScrollLock();
