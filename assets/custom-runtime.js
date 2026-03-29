@@ -327,16 +327,6 @@ function initFirstScreenState() {
   const capsMask = document.querySelector(".s1__p-caps-mask-7");
   const lineMask = document.querySelector(".s1__ic-line-mask");
 
-  if ((window.pageYOffset || document.documentElement.scrollTop || 0) === 0) {
-    sectionTriggerNames.forEach((name) => {
-      if (name === "first") {
-        document.body.setAttribute(name, "");
-      } else {
-        document.body.removeAttribute(name);
-      }
-    });
-  }
-
   [menuLine, bottomBar, burger, logo, desktopCta, mobileCta].forEach((element) =>
     setOpacity(element, "0"),
   );
@@ -712,6 +702,7 @@ function initScrollTriggerAttributes() {
     });
 
     state.pageHeight = document.body.offsetHeight;
+    recalculateScroll();
   }
 
   function recalculateScroll() {
@@ -774,6 +765,25 @@ function normalizeInViewProgress(element) {
   const total = viewportHeight + rect.height;
   if (total <= 0) return 0;
   return clamp((viewportHeight - rect.top) / total, 0, 1);
+}
+
+function rectIntersectsViewportBand(rect, offsetPercent) {
+  const viewportWidth = window.innerWidth || 0;
+  const viewportHeight = window.innerHeight || 0;
+  const offset = (viewportHeight * (offsetPercent || 0)) / 100;
+  const band = {
+    left: 0,
+    top: offset,
+    right: viewportWidth,
+    bottom: viewportHeight - offset,
+  };
+
+  return !(
+    rect.left > band.right ||
+    rect.right < band.left ||
+    rect.top > band.bottom ||
+    rect.bottom < band.top
+  );
 }
 
 function resolveKeyframedValue(progress, keyframes) {
@@ -1291,6 +1301,140 @@ function initCreatorSectionAnimations() {
   }
 }
 
+function initSymbolsSectionAnimations() {
+  if (window.innerWidth < 992) return;
+
+  const section = document.querySelector(".s6");
+  const frameItem1 = document.querySelector(".s6__frame-item._1");
+  const frameItem2 = document.querySelector(".s6__frame-item._2");
+  const show = document.querySelector(".s6 .show");
+  const symbolsSection = document.querySelector(".s6__section");
+  const bottomText = document.querySelector(".s6__container-bottom-text:not(.mob)");
+  const bottomTextLabel = bottomText?.querySelector(
+    ".s6__container-bottom__mask .p-normal-grotesk.white",
+  );
+  const bottomTextCount = bottomText?.querySelector(
+    ".s6__container-bottom-p .s6__container-bottom-p-mask",
+  );
+
+  if (!section) return;
+
+  const outCircBezier = "cubic-bezier(0.075, 0.820, 0.165, 1)";
+
+  function applySymbolsOutState() {
+    if (frameItem1) {
+      frameItem1.style.transform = "translate3d(-50vw, 0px, 0px)";
+    }
+    if (frameItem2) {
+      frameItem2.style.transform = "translate3d(50vw, 0px, 0px)";
+    }
+    if (show) {
+      show.style.transform = "translate3d(-50vw, 0px, 0px)";
+    }
+    if (symbolsSection) {
+      symbolsSection.style.transform = "translate3d(50vw, 0px, 0px)";
+    }
+  }
+
+  function playSymbolsIn() {
+    if (frameItem1) {
+      frameItem1.style.transition = `transform 1000ms ${outCircBezier}`;
+      frameItem1.style.transform = "translate3d(0vw, 0px, 0px)";
+    }
+    if (frameItem2) {
+      frameItem2.style.transition = `transform 1000ms ${outCircBezier}`;
+      frameItem2.style.transform = "translate3d(0vw, 0px, 0px)";
+    }
+    if (show) {
+      show.style.transition = "transform 1200ms ease";
+      show.style.transform = "translate3d(0vw, 0px, 0px)";
+    }
+    if (symbolsSection) {
+      symbolsSection.style.transition = "transform 1200ms ease";
+      symbolsSection.style.transform = "translate3d(0vw, 0px, 0px)";
+    }
+  }
+
+  function playSymbolsOut() {
+    if (frameItem1) {
+      frameItem1.style.transition = `transform 1000ms ${outCircBezier}`;
+      frameItem1.style.transform = "translate3d(-50vw, 0px, 0px)";
+    }
+    if (frameItem2) {
+      frameItem2.style.transition = `transform 1000ms ${outCircBezier}`;
+      frameItem2.style.transform = "translate3d(50vw, 0px, 0px)";
+    }
+    if (show) {
+      show.style.transition = "transform 1200ms ease";
+      show.style.transform = "translate3d(-50vw, 0px, 0px)";
+    }
+    if (symbolsSection) {
+      symbolsSection.style.transition = "transform 1200ms ease";
+      symbolsSection.style.transform = "translate3d(50vw, 0px, 0px)";
+    }
+  }
+
+  function applyBottomTextInitialState() {
+    if (bottomTextLabel) {
+      bottomTextLabel.style.transform = "translate3d(0px, 100%, 0px)";
+    }
+    if (bottomTextCount) {
+      bottomTextCount.style.transform = "translate3d(0px, 100%, 0px)";
+    }
+  }
+
+  function playBottomTextIn() {
+    if (bottomTextLabel) {
+      bottomTextLabel.style.transition = "transform 500ms ease";
+      bottomTextLabel.style.transform = "translate3d(0px, 0%, 0px)";
+    }
+    if (bottomTextCount) {
+      bottomTextCount.style.transition = "transform 500ms ease 100ms";
+      bottomTextCount.style.transform = "translate3d(0px, 0%, 0px)";
+    }
+  }
+
+  applySymbolsOutState();
+  applyBottomTextInitialState();
+
+  let rafId = 0;
+  let entered = false;
+  let bottomTextPlayed = false;
+
+  function checkSymbolsState() {
+    rafId = 0;
+    const rect = section.getBoundingClientRect();
+    const shouldEnter = rectIntersectsViewportBand(rect, 50);
+    const shouldStayForExit = rectIntersectsViewportBand(rect, 70);
+    const shouldShowBottomText =
+      bottomText && rectIntersectsViewportBand(bottomText.getBoundingClientRect(), 10);
+
+    if (!entered && shouldEnter) {
+      entered = true;
+      playSymbolsIn();
+    }
+
+    if (entered && !shouldStayForExit) {
+      entered = false;
+      playSymbolsOut();
+    }
+
+    if (!bottomTextPlayed && shouldShowBottomText) {
+      bottomTextPlayed = true;
+      playBottomTextIn();
+    }
+  }
+
+  function requestCheckSymbolsState() {
+    if (rafId) return;
+    rafId = requestAnimationFrame(checkSymbolsState);
+  }
+
+  checkSymbolsState();
+  window.addEventListener("scroll", requestCheckSymbolsState, { passive: true });
+  window.addEventListener("resize", requestCheckSymbolsState);
+}
+
 function initLenisAndScrollLock() {
   if (typeof Lenis !== "function") return;
 
@@ -1740,19 +1884,20 @@ function initVhFix() {
   });
 }
 
-initScrollTriggerAttributes();
 initVhFix();
 
 document.addEventListener("DOMContentLoaded", () => {
+  initSelectorBlocks();
+  initScrollTriggerAttributes();
   initFirstScreenState();
   initFirstScreenScrollEffects();
   initAboutCardsParallax();
   initCreatorSectionAnimations();
+  initSymbolsSectionAnimations();
   initNoiseAnimation();
   initRuntimeLotties();
   initDemo1LottieScroll();
   initInteractiveLotties();
-  initSelectorBlocks();
   initTextControls();
   initPreloaderSequence();
   initAnchorButtons();

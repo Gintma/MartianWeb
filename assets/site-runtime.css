@@ -138,6 +138,22 @@ html {
   pointer-events: auto;
 }
 
+.button.active {
+  color: #e43c0c !important;
+}
+
+@media (min-width: 769px) {
+  .button.active :hover {
+    color: #e43c0c;
+  }
+}
+
+@media (max-width: 768px) {
+  .button.active :hover {
+    color: #e43c0c;
+  }
+}
+
 .s8__bt-align.active,
 .s8__bt-align.active .s8__ic-bt-align {
   color: #fff !important;
@@ -159,18 +175,6 @@ html {
 [demo3] .s1__item-p-demo-3,
 [footer] .s1__item-p-footer {
   display: block !important;
-}
-
-[first] .s1__item-p-about,
-[first] .s1__item-p-creator,
-[first] .s1__item-p-demo-1,
-[first] .s1__item-p-symbols,
-[first] .s1__item-p-variable-1,
-[first] .s1__item-p-demo-2,
-[first] .s1__item-p-variable-2,
-[first] .s1__item-p-demo-3,
-[first] .s1__item-p-footer {
-  display: none !important;
 }
 
 *,
