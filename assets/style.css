@@ -2613,6 +2613,7 @@ p {
   align-items: center;
   width: 100%;
   display: flex;
+  position: relative;
 }
 
 .icon {
@@ -2743,6 +2744,7 @@ p {
   min-width: 10.2vw;
   padding: 20% .55vw .27vw 1.04167vw;
   display: none;
+  position: absolute;
   inset: 60% 0% auto;
 }
 

@@ -125,6 +125,30 @@ function initTextControls() {
 
   const iconWhite = "s8__bt-align-ic-w";
   const iconOrange = "s8__bt-align-ic-o";
+  const iconOrangeStatic = "s8__bt-align-ic-orange";
+
+  function applyAlignButtonState(button, hovered = !1) {
+    const orangeIcon = button.querySelector(`.${iconOrange}`);
+    const whiteIcon = button.querySelector(`.${iconWhite}`);
+    const iconEmbed = button.querySelector(".s8__ic-bt-align");
+    const staticOrangeIcon = button.querySelector(`.${iconOrangeStatic}`);
+    if (!orangeIcon || !whiteIcon || !iconEmbed) return;
+
+    const active = button.classList.contains("active");
+    const highlight = active || hovered;
+
+    orangeIcon.style.transition = "opacity 300ms ease-out";
+    whiteIcon.style.transition = "opacity 300ms ease-out";
+    iconEmbed.style.transition = "color 300ms ease";
+
+    orangeIcon.style.opacity = highlight ? "1" : "0";
+    whiteIcon.style.opacity = highlight ? "0" : "1";
+    iconEmbed.style.color = highlight ? "#fff" : "#000";
+
+    if (staticOrangeIcon) {
+      staticOrangeIcon.style.opacity = highlight ? "1" : "0";
+    }
+  }
 
   section.addEventListener("input", () => {
     const text = section.textContent || section.innerText;
@@ -143,28 +167,41 @@ function initTextControls() {
         if (!orangeIcon || !whiteIcon) return;
 
         if (otherButton !== button) {
-          orangeIcon.style.display = "none";
+          orangeIcon.style.display = "block";
           whiteIcon.style.display = "block";
         } else {
           orangeIcon.style.display = "block";
-          whiteIcon.style.display = "none";
+          whiteIcon.style.display = "block";
         }
+
+        applyAlignButtonState(otherButton, !1);
       });
 
       button.classList.add("active");
       section.style.textAlign = button.getAttribute("text-align");
+      applyAlignButtonState(button, !1);
     });
 
     const orangeIcon = button.querySelector(`.${iconOrange}`);
     const whiteIcon = button.querySelector(`.${iconWhite}`);
     if (!orangeIcon || !whiteIcon) return;
 
-    if (button.classList.contains("active")) {
-      orangeIcon.style.display = "block";
-      whiteIcon.style.display = "none";
-    } else {
-      orangeIcon.style.display = "none";
-      whiteIcon.style.display = "block";
+    orangeIcon.style.display = "block";
+    whiteIcon.style.display = "block";
+    applyAlignButtonState(button, !1);
+
+    if (window.innerWidth >= 992) {
+      button.addEventListener("mouseenter", () => {
+        if (!button.classList.contains("active")) {
+          applyAlignButtonState(button, !0);
+        }
+      });
+
+      button.addEventListener("mouseleave", () => {
+        if (!button.classList.contains("active")) {
+          applyAlignButtonState(button, !1);
+        }
+      });
     }
   });
 
@@ -210,7 +247,121 @@ function initTextControls() {
 
   updateFontSizeAndLineHeight();
   updateLetterSpacing();
-  updateLineHeight();
+}
+
+function initVariable2Dropdown() {
+  const dropdown = document.querySelector(".s8__container .dropdown");
+  const dropdownToggle = dropdown?.querySelector(".dropdown-toggle");
+  const dropdownList = dropdown?.querySelector(".dropdown-list");
+  const dropdownItems = dropdownList?.querySelectorAll(".s8__bt");
+
+  if (!dropdown || !dropdownToggle || !dropdownList || !dropdownItems?.length) {
+    return;
+  }
+
+  let isOpen = !1;
+  let closeTimer = null;
+  const delay = Number(dropdown.getAttribute("data-delay") || "0");
+  const hoverEnabled = dropdown.getAttribute("data-hover") === "true";
+
+  function isMobileDropdownMode() {
+    return window.innerWidth <= 991;
+  }
+
+  function clearCloseTimer() {
+    if (closeTimer) {
+      window.clearTimeout(closeTimer);
+      closeTimer = null;
+    }
+  }
+
+  function applyClosedState() {
+    clearCloseTimer();
+    dropdownList.style.opacity = "0";
+    dropdownList.style.display = "none";
+    dropdown.classList.remove("w--open");
+    dropdownToggle.classList.remove("w--open");
+    dropdownToggle.setAttribute("aria-expanded", "false");
+    isOpen = !1;
+  }
+
+  function openDropdown() {
+    clearCloseTimer();
+    dropdownList.style.display = "flex";
+    dropdownList.style.transition = "opacity 200ms ease-out";
+    dropdown.classList.add("w--open");
+    dropdownToggle.classList.add("w--open");
+    dropdownToggle.setAttribute("aria-expanded", "true");
+    requestAnimationFrame(() => {
+      dropdownList.style.opacity = "1";
+    });
+    isOpen = !0;
+  }
+
+  function closeDropdown() {
+    clearCloseTimer();
+    dropdownList.style.transition = "opacity 200ms ease-out";
+    dropdownList.style.opacity = "0";
+    window.setTimeout(() => {
+      if (!isOpen) {
+        dropdownList.style.display = "none";
+        dropdown.classList.remove("w--open");
+        dropdownToggle.classList.remove("w--open");
+        dropdownToggle.setAttribute("aria-expanded", "false");
+      }
+    }, 200);
+    isOpen = !1;
+  }
+
+  applyClosedState();
+
+  dropdownToggle.addEventListener("click", (event) => {
+    if (!isMobileDropdownMode()) return;
+    event.preventDefault();
+    event.stopPropagation();
+    if (isOpen) {
+      closeDropdown();
+    } else {
+      openDropdown();
+    }
+  });
+
+  if (hoverEnabled) {
+    dropdown.addEventListener("mouseenter", () => {
+      if (isMobileDropdownMode()) return;
+      openDropdown();
+    });
+
+    dropdown.addEventListener("mouseleave", () => {
+      if (isMobileDropdownMode()) return;
+      clearCloseTimer();
+      if (!delay) {
+        closeDropdown();
+        return;
+      }
+      closeTimer = window.setTimeout(closeDropdown, delay);
+    });
+  }
+
+  dropdownItems.forEach((item) => {
+    item.addEventListener("click", () => {
+      if (isMobileDropdownMode()) {
+        closeDropdown();
+      }
+    });
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!isOpen || !isMobileDropdownMode()) return;
+    if (dropdown.contains(event.target)) return;
+    closeDropdown();
+  });
+
+  window.addEventListener("resize", () => {
+    if (!isMobileDropdownMode()) {
+      applyClosedState();
+    }
+  });
 }
 
 function animatePercentage(element, start, end, duration) {
@@ -2149,6 +2300,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initDemo1LottieScroll();
   initInteractiveLotties();
   initTextControls();
+  initVariable2Dropdown();
   initPreloaderSequence();
   initAnchorButtons();
   initLenisAndScrollLock();
