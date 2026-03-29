@@ -317,6 +317,7 @@ function initFirstScreenState() {
     document.querySelector(".s1__container-h1 .h1-mono"),
     document.querySelector(".s1__container-h1._2 .h1-mono"),
   ].filter(Boolean);
+  const titleContainers = document.querySelectorAll(".s1__container-h1");
   const backgroundImages = [
     document.querySelector(".s1__bg-image-1"),
     document.querySelector(".s1__bg-image-2"),
@@ -324,6 +325,7 @@ function initFirstScreenState() {
   const emptyItem = document.querySelector(".s1__item-p-empty");
   const emptyAbsolute = document.querySelector(".s1__item-p-empty-absolute");
   const capsMask = document.querySelector(".s1__p-caps-mask-7");
+  const lineMask = document.querySelector(".s1__ic-line-mask");
 
   if ((window.pageYOffset || document.documentElement.scrollTop || 0) === 0) {
     sectionTriggerNames.forEach((name) => {
@@ -358,6 +360,13 @@ function initFirstScreenState() {
     setTransform(element, "translate3d(0, 101%, 0)");
   });
 
+  if (window.innerWidth >= 992) {
+    titleContainers.forEach((element) => {
+      setTransform(element, "scale3d(0.9, 0.9, 1)");
+      element.style.transformOrigin = "50% 50%";
+    });
+  }
+
   backgroundImages.forEach((element) => {
     setOpacity(element, "1");
     setTransform(element, "translate3d(0, 5%, 0) scale3d(1.2, 1.2, 1)");
@@ -382,6 +391,11 @@ function initFirstScreenState() {
     capsMask.dataset.targetWidth = `${targetWidth}px`;
     capsMask.style.width = "0px";
     capsMask.style.overflow = "hidden";
+  }
+
+  if (lineMask) {
+    lineMask.style.width = "0%";
+    lineMask.style.overflow = "hidden";
   }
 
   firstScreenSequenceState.initialized = true;
@@ -453,36 +467,24 @@ function playFirstScreenSequence() {
     document.querySelector(".s1__text-mask-s._3 .p-normal-grotesk"),
     document.querySelector(".s1__text-mask-s._4 .p-normal-grotesk"),
   ].filter(Boolean);
+  const lineMask = document.querySelector(".s1__ic-line-mask");
   const titleMartian = document.querySelector(".s1__container-h1 .h1-mono");
   const titleMono = document.querySelector(".s1__container-h1._2 .h1-mono");
   const backgroundImage1 = document.querySelector(".s1__bg-image-1");
   const backgroundImage2 = document.querySelector(".s1__bg-image-2");
   const emptyItem = document.querySelector(".s1__item-p-empty");
-  const capsMask = document.querySelector(".s1__p-caps-mask-7");
+  const firstGroupDuration = 950;
 
-  animateElement(orangeMask, {
-    delay: 0,
-    duration: 950,
-    transform: "translate3d(0, 0, 0)",
-  });
   animateElement(orangeInner, {
     delay: 0,
     duration: 950,
     transform: "translate3d(0, 0, 0)",
   });
 
-  textMasks.forEach((element, index) => {
-    animateElement(element, {
-      delay: index * 10,
-      duration: 950,
-      transform: "translate3d(0, 0, 0)",
-    });
-  });
-
   textInners.forEach((element, index) => {
     animateElement(element, {
       delay: 100 + index * 100,
-      duration: index === 3 ? 300 : 300,
+      duration: 300,
       transform: "translate3d(0, 0, 0)",
     });
   });
@@ -493,15 +495,29 @@ function playFirstScreenSequence() {
     opacity: "1",
   });
 
+  animateElement(orangeMask, {
+    delay: firstGroupDuration,
+    duration: 950,
+    transform: "translate3d(0, 0, 0)",
+  });
+
+  textMasks.forEach((element, index) => {
+    animateElement(element, {
+      delay: firstGroupDuration + 10 + index * 10,
+      duration: 950,
+      transform: "translate3d(0, 0, 0)",
+    });
+  });
+
   animateElement(backgroundImage1, {
-    delay: 300,
+    delay: firstGroupDuration + 300,
     duration: 850,
     easing: "ease",
     transform: "translate3d(0, 0, 0) scale3d(1, 1, 1)",
     opacity: "1",
   });
   animateElement(backgroundImage2, {
-    delay: 300,
+    delay: firstGroupDuration + 300,
     duration: 850,
     easing: "ease",
     transform: "translate3d(0, 0, 0) scale3d(1, 1, 1)",
@@ -509,20 +525,27 @@ function playFirstScreenSequence() {
   });
 
   animateElement(titleMartian, {
-    delay: 300,
+    delay: firstGroupDuration + 300,
     duration: 1000,
     transform: "translate3d(0, 0, 0)",
   });
   animateElement(titleMono, {
-    delay: 500,
+    delay: firstGroupDuration + 500,
     duration: 1000,
     transform: "translate3d(0, 0, 0)",
+  });
+
+  animateElement(lineMask, {
+    delay: firstGroupDuration + 900,
+    duration: 1000,
+    transform: undefined,
+    width: "100%",
   });
 
   if (emptyItem) {
     const targetWidth = emptyItem.dataset.targetWidth || "auto";
     animateElement(emptyItem, {
-      delay: 2000,
+      delay: firstGroupDuration + 2000,
       duration: 1000,
       width: targetWidth,
     });
@@ -532,24 +555,12 @@ function playFirstScreenSequence() {
       if (targetHeight) {
         emptyItem.style.height = targetHeight;
       }
-    }, 3000);
+    }, firstGroupDuration + 3000);
   }
 
-  if (capsMask) {
-    const targetWidth = capsMask.dataset.targetWidth || "auto";
-    animateElement(capsMask, {
-      delay: 2000,
-      duration: 1000,
-      width: targetWidth,
-    });
-    window.setTimeout(() => {
-      capsMask.style.width = "auto";
-    }, 3000);
-  }
-
-  [burger, logo, desktopCta, menuLine, bottomBar].forEach((element) => {
+  [burger, logo, desktopCta].forEach((element) => {
     animateElement(element, {
-      delay: 2200,
+      delay: firstGroupDuration + 2200,
       duration: 800,
       easing: "ease-out",
       opacity: "1",
@@ -558,7 +569,7 @@ function playFirstScreenSequence() {
 
   window.setTimeout(() => {
     startEmptyIndicatorPulse();
-  }, 2200);
+  }, firstGroupDuration + 2200);
 }
 
 function initPreloaderSequence() {
@@ -567,6 +578,8 @@ function initPreloaderSequence() {
   const batteryBlock = document.querySelector(".preloader__block-battery");
   const percentageBlock = document.querySelector(".preloader__block-p");
   const percentageElement = document.getElementById("percentage");
+  const menuLine = document.querySelector(".menu__container-line");
+  const bottomBar = document.querySelector(".container-bottom__p");
   const batterySteps = [
     document.querySelector(".preloader__battery-img-2"),
     document.querySelector(".preloader__battery-img-3"),
@@ -628,6 +641,14 @@ function initPreloaderSequence() {
     }, batteryPhaseDuration + collapseDuration);
 
     window.setTimeout(() => {
+      if (menuLine) {
+        menuLine.style.transition = "none";
+        menuLine.style.opacity = "1";
+      }
+      if (bottomBar) {
+        bottomBar.style.transition = "none";
+        bottomBar.style.opacity = "1";
+      }
       preloader.classList.add("is-exiting");
       preloader.setAttribute("aria-hidden", "true");
     }, batteryPhaseDuration + collapseDuration + expandDuration);
@@ -736,6 +757,279 @@ function initScrollTriggerAttributes() {
   window.addEventListener("scroll", optimizedScrollHandler);
   window.addEventListener("resize", optimizedResizeHandler);
   loopRecalculatePage(optimizedResizeHandler);
+}
+
+function clamp(value, min, max) {
+  return Math.min(Math.max(value, min), max);
+}
+
+function lerp(start, end, progress) {
+  return start + (end - start) * progress;
+}
+
+function normalizeInViewProgress(element) {
+  if (!element) return 0;
+  const rect = element.getBoundingClientRect();
+  const viewportHeight = window.innerHeight || 1;
+  const total = viewportHeight + rect.height;
+  if (total <= 0) return 0;
+  return clamp((viewportHeight - rect.top) / total, 0, 1);
+}
+
+function resolveKeyframedValue(progress, keyframes) {
+  if (!keyframes.length) return null;
+  if (progress <= keyframes[0].progress) return keyframes[0].value;
+  for (let index = 1; index < keyframes.length; index += 1) {
+    const previous = keyframes[index - 1];
+    const current = keyframes[index];
+    if (progress <= current.progress) {
+      const localProgress =
+        (progress - previous.progress) / (current.progress - previous.progress);
+      return lerp(previous.value, current.value, localProgress);
+    }
+  }
+  return keyframes[keyframes.length - 1].value;
+}
+
+function initFirstScreenScrollEffects() {
+  if (window.innerWidth < 992) return;
+
+  const firstTrigger = document.querySelector(".s1__scroll-animation-trigger");
+  const secondTrigger = document.querySelector(".s2__trigger-animation-scroll");
+  const bgImage1 = document.querySelector(".s1__bg-image-1");
+  const bgImage2 = document.querySelector(".s1__bg-image-2");
+  const bgImage3 = document.querySelector(".s1__bg-image-3");
+  const bgImage4 = document.querySelector(".s1__bg-image-4");
+  const bgImage4Bg = document.querySelector(".s1__bg-image-4-bg");
+  const titleContainers = Array.from(
+    document.querySelectorAll(".s1__container-h1"),
+  );
+  const titleHeadings = Array.from(
+    document.querySelectorAll(".s1__container-h1 .h1-mono"),
+  );
+  const circleBg = document.querySelector(".s2__circle-bg-container");
+  const plusIcons = Array.from(document.querySelectorAll(".ic-plus"));
+
+  if (!firstTrigger) return;
+
+  const firstScreenKeyframes = {
+    titleScale: [
+      { progress: 0, value: 0.9 },
+      { progress: 0.3, value: 1 },
+    ],
+    titleWeight: [
+      { progress: 0.1, value: 400 },
+      { progress: 0.8, value: 800 },
+    ],
+    bg1Y: [
+      { progress: 0, value: 0 },
+      { progress: 0.8, value: -10 },
+    ],
+    bg1Scale: [
+      { progress: 0, value: 1 },
+      { progress: 0.8, value: 1.4 },
+    ],
+    bg2Y: [
+      { progress: 0, value: 0 },
+      { progress: 0.95, value: -20 },
+    ],
+    bg2Scale: [
+      { progress: 0, value: 1 },
+      { progress: 0.95, value: 1.4 },
+    ],
+    bg3Y: [
+      { progress: 0, value: 5 },
+      { progress: 0.95, value: -60 },
+    ],
+    bg3Scale: [
+      { progress: 0, value: 1 },
+      { progress: 0.95, value: 1.6 },
+    ],
+    bg4X: [
+      { progress: 0, value: 0 },
+      { progress: 1, value: 10 },
+    ],
+    bg4Y: [
+      { progress: 0, value: 0 },
+      { progress: 1, value: -80 },
+    ],
+    bg4Scale: [
+      { progress: 0, value: 1 },
+      { progress: 1, value: 1.4 },
+    ],
+  };
+
+  const secondScreenKeyframes = {
+    titleY: [
+      { progress: 0, value: 0 },
+      { progress: 1, value: -10 },
+    ],
+    circleY: [
+      { progress: 0, value: 0 },
+      { progress: 1, value: -20 },
+    ],
+  };
+
+  let rafId = 0;
+
+  function applyTransforms() {
+    rafId = 0;
+
+    const firstProgress = normalizeInViewProgress(firstTrigger);
+    const secondProgress = secondTrigger
+      ? normalizeInViewProgress(secondTrigger)
+      : 0;
+
+    const titleScale = resolveKeyframedValue(
+      firstProgress,
+      firstScreenKeyframes.titleScale,
+    );
+    const titleWeight = resolveKeyframedValue(
+      firstProgress,
+      firstScreenKeyframes.titleWeight,
+    );
+    const titleYVw = resolveKeyframedValue(
+      secondProgress,
+      secondScreenKeyframes.titleY,
+    );
+
+    titleContainers.forEach((element) => {
+      element.style.transform = `translate3d(0, ${titleYVw}vw, 0) scale3d(${titleScale}, ${titleScale}, 1)`;
+      element.style.transformOrigin = "50% 50%";
+      element.style.willChange = "transform";
+    });
+
+    titleHeadings.forEach((element) => {
+      element.style.fontVariationSettings = `"wght" ${titleWeight}`;
+      element.style.willChange = "font-variation-settings, transform";
+    });
+
+    if (bgImage1) {
+      const y = resolveKeyframedValue(firstProgress, firstScreenKeyframes.bg1Y);
+      const scale = resolveKeyframedValue(
+        firstProgress,
+        firstScreenKeyframes.bg1Scale,
+      );
+      bgImage1.style.transform = `translate3d(0, ${y}rem, 0) scale3d(${scale}, ${scale}, 1)`;
+      bgImage1.style.willChange = "transform";
+    }
+
+    if (bgImage2) {
+      const y = resolveKeyframedValue(firstProgress, firstScreenKeyframes.bg2Y);
+      const scale = resolveKeyframedValue(
+        firstProgress,
+        firstScreenKeyframes.bg2Scale,
+      );
+      bgImage2.style.transform = `translate3d(0, ${y}rem, 0) scale3d(${scale}, ${scale}, 1)`;
+      bgImage2.style.willChange = "transform";
+    }
+
+    if (bgImage3) {
+      const y = resolveKeyframedValue(firstProgress, firstScreenKeyframes.bg3Y);
+      const scale = resolveKeyframedValue(
+        firstProgress,
+        firstScreenKeyframes.bg3Scale,
+      );
+      bgImage3.style.transform = `translate3d(0, ${y}rem, 0) scale3d(${scale}, ${scale}, 1)`;
+      bgImage3.style.willChange = "transform";
+    }
+
+    if (bgImage4) {
+      const x = resolveKeyframedValue(firstProgress, firstScreenKeyframes.bg4X);
+      const y = resolveKeyframedValue(firstProgress, firstScreenKeyframes.bg4Y);
+      const scale = resolveKeyframedValue(
+        firstProgress,
+        firstScreenKeyframes.bg4Scale,
+      );
+      bgImage4.style.transform = `translate3d(${x}rem, ${y}rem, 0) scale3d(${scale}, ${scale}, 1)`;
+      bgImage4.style.willChange = "transform";
+    }
+
+    if (bgImage4Bg) {
+      const x = resolveKeyframedValue(firstProgress, firstScreenKeyframes.bg4X);
+      const y = resolveKeyframedValue(firstProgress, firstScreenKeyframes.bg4Y);
+      const scale = resolveKeyframedValue(
+        firstProgress,
+        firstScreenKeyframes.bg4Scale,
+      );
+      bgImage4Bg.style.transform = `translate3d(${x}rem, ${y}rem, 0) scale3d(${scale}, ${scale}, 1)`;
+      bgImage4Bg.style.willChange = "transform";
+    }
+
+    if (circleBg) {
+      const y = resolveKeyframedValue(secondProgress, secondScreenKeyframes.circleY);
+      circleBg.style.transform = `translate3d(0, ${y}vw, 0)`;
+      circleBg.style.willChange = "transform";
+    }
+
+    const plusRotation = lerp(0, 540, secondTrigger ? secondProgress : firstProgress);
+    plusIcons.forEach((element) => {
+      element.style.transform = `rotate(${plusRotation}deg)`;
+      element.style.willChange = "transform";
+    });
+  }
+
+  function requestApplyTransforms() {
+    if (rafId) return;
+    rafId = requestAnimationFrame(applyTransforms);
+  }
+
+  applyTransforms();
+  window.addEventListener("scroll", requestApplyTransforms, { passive: true });
+  window.addEventListener("resize", requestApplyTransforms);
+}
+
+function initNoiseAnimation() {
+  const noise = document.querySelector(".noise");
+  if (!noise) return;
+
+  const keyframes = [
+    { x: 0, y: 0, duration: 0 },
+    { x: 20, y: -20, duration: 200 },
+    { x: -20, y: 20, duration: 200 },
+    { x: 20, y: -20, duration: 200 },
+    { x: -20, y: 20, duration: 200 },
+  ];
+
+  const loopDuration = keyframes
+    .slice(1)
+    .reduce((total, keyframe) => total + keyframe.duration, 0);
+
+  let startedAt = 0;
+
+  function applyNoiseTransform(progressMs) {
+    let elapsed = progressMs;
+    let previous = keyframes[0];
+
+    for (let index = 1; index < keyframes.length; index += 1) {
+      const current = keyframes[index];
+      if (elapsed <= current.duration) {
+        const segmentProgress =
+          current.duration === 0 ? 1 : elapsed / current.duration;
+        const x = lerp(previous.x, current.x, segmentProgress);
+        const y = lerp(previous.y, current.y, segmentProgress);
+        noise.style.transform = `translate3d(${x}vw, ${y}vh, 0)`;
+        noise.style.willChange = "transform";
+        return;
+      }
+      elapsed -= current.duration;
+      previous = current;
+    }
+
+    const last = keyframes[keyframes.length - 1];
+    noise.style.transform = `translate3d(${last.x}vw, ${last.y}vh, 0)`;
+    noise.style.willChange = "transform";
+  }
+
+  function tick(timestamp) {
+    if (!startedAt) startedAt = timestamp;
+    const elapsed = (timestamp - startedAt) % loopDuration;
+    applyNoiseTransform(elapsed);
+    requestAnimationFrame(tick);
+  }
+
+  applyNoiseTransform(0);
+  requestAnimationFrame(tick);
 }
 
 function initLenisAndScrollLock() {
@@ -1126,6 +1420,8 @@ initVhFix();
 
 document.addEventListener("DOMContentLoaded", () => {
   initFirstScreenState();
+  initFirstScreenScrollEffects();
+  initNoiseAnimation();
   initRuntimeLotties();
   initInteractiveLotties();
   initSelectorBlocks();
