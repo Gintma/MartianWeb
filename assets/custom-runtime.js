@@ -1073,6 +1073,224 @@ function initAboutCardsParallax() {
   window.addEventListener("resize", requestApplyParallax);
 }
 
+function initCreatorSectionAnimations() {
+  const section = document.querySelector(".s3");
+  const card = document.querySelector(".s3__card");
+  const heading1 = document.querySelector(".s3_container-h-1");
+  const heading2 = document.querySelector(".s3_container-h-2");
+  const plusIcons = Array.from(document.querySelectorAll(".ic-plus-s3"));
+  const battery = document.querySelector(".s3__battary-2");
+  const globus = document.querySelector(".s3__img-globus");
+  const cardButton = document.querySelector(".s3__card .bt-orange");
+  const aboutMask = document.querySelector(".s3__card-block-3-p-mask-6");
+  const mask1 = document.querySelector(".s3__card-block-2-p-mask-1");
+  const mask2 = document.querySelector(".s3__card-block-2-p-mask-2");
+  const mask3 = document.querySelector(".s3__card-block-2-p-mask-3");
+  const mask4 = document.querySelector(".s3__card-block-2-p-mask-4");
+  const mask5 = document.querySelector(".s3__card-block-2-p-mask-5");
+  const lineItems = Array.from(
+    document.querySelectorAll(
+      ".s3__card-block-3-p-line-item-1, .s3__card-block-3-p-line-item-2, .s3__card-block-3-p-line-item-3, .s3__card-block-3-p-line-item-4, .s3__card-block-3-p-line-item-5, .s3__card-block-3-p-line-item-6, .s3__card-block-3-p-line-item-7, .s3__card-block-3-p-line-item-8",
+    ),
+  );
+
+  if (!section) return;
+
+  function setWidth(element, value) {
+    if (!element) return;
+    element.style.width = `${value}%`;
+  }
+
+  function setRotation(element, value) {
+    if (!element) return;
+    element.style.transform = `rotate(${value}deg)`;
+    element.style.willChange = "transform";
+  }
+
+  function initCreatorIntoViewState() {
+    setWidth(mask1, 0);
+    setWidth(mask2, 0);
+    setWidth(mask3, 0);
+    setWidth(mask4, 0);
+    setWidth(mask5, 0);
+    setWidth(aboutMask, 0);
+    lineItems.forEach((element) => setWidth(element, 100));
+    setOpacity(globus, 0);
+    setOpacity(cardButton, 0);
+    setOpacity(battery, 0);
+  }
+
+  function initCreatorScrollHeading() {
+    let rafId = 0;
+
+    function applyHeadingScroll() {
+      rafId = 0;
+      const progress = normalizeInViewProgress(section);
+      const headingProgress = clamp(progress / 0.35, 0, 1);
+      const headingY = lerp(100, 0, headingProgress);
+      const plusRotation = lerp(0, 360, progress);
+
+      if (heading1) {
+        heading1.style.transform = `translate3d(0, ${headingY}%, 0)`;
+        heading1.style.willChange = "transform";
+      }
+
+      if (heading2) {
+        heading2.style.transform = `translate3d(0, ${headingY}%, 0)`;
+        heading2.style.willChange = "transform";
+      }
+
+      plusIcons.forEach((element) => setRotation(element, plusRotation));
+    }
+
+    function requestApplyHeadingScroll() {
+      if (rafId) return;
+      rafId = requestAnimationFrame(applyHeadingScroll);
+    }
+
+    applyHeadingScroll();
+    window.addEventListener("scroll", requestApplyHeadingScroll, { passive: true });
+    window.addEventListener("resize", requestApplyHeadingScroll);
+  }
+
+  function playBatteryFlash() {
+    if (!battery) return;
+    if (battery._creatorBatteryAnimation) return;
+    battery.style.willChange = "opacity";
+    battery._creatorBatteryAnimation = battery.animate(
+      [
+        { opacity: 0, offset: 0 },
+        { opacity: 1, offset: 1000 / 1300, easing: "ease-out" },
+        { opacity: 0, offset: 1, easing: "ease-out" },
+      ],
+      {
+        duration: 1300,
+        iterations: Infinity,
+        fill: "both",
+      },
+    );
+  }
+
+  function playGlobusRotation() {
+    if (!globus) return;
+    if (globus._creatorRotationAnimation) return;
+    globus.style.willChange = "transform";
+    globus._creatorRotationAnimation = globus.animate(
+      [
+        { transform: "translate3d(0px, 0px, 0px) rotate(0deg)" },
+        { transform: "translate3d(0px, 0px, 0px) rotate(-360deg)" },
+      ],
+      {
+        duration: 6000,
+        iterations: Infinity,
+        easing: "linear",
+        fill: "both",
+      },
+    );
+  }
+
+  function stopBatteryFlash() {
+    if (!battery || !battery._creatorBatteryAnimation) return;
+    battery._creatorBatteryAnimation.cancel();
+    battery._creatorBatteryAnimation = null;
+    setOpacity(battery, 0);
+  }
+
+  function stopGlobusRotation() {
+    if (!globus || !globus._creatorRotationAnimation) return;
+    globus._creatorRotationAnimation.cancel();
+    globus._creatorRotationAnimation = null;
+    setRotation(globus, 0);
+  }
+
+  function playCreatorCardReveal() {
+    const widthTargets = [
+      { element: mask1, delay: 0 },
+      { element: mask2, delay: 200 },
+      { element: mask3, delay: 400 },
+      { element: mask4, delay: 1000 },
+      { element: mask5, delay: 1100 },
+      { element: aboutMask, delay: 1500 },
+    ];
+
+    widthTargets.forEach(({ element, delay }) => {
+      if (!element) return;
+      window.setTimeout(() => {
+        element.style.transition = "width 600ms ease";
+        setWidth(element, 100);
+      }, delay);
+    });
+
+    if (globus) {
+      window.setTimeout(() => {
+        setTransition(globus, "opacity 600ms ease-out");
+        setOpacity(globus, 1);
+      }, 600);
+    }
+
+    if (cardButton) {
+      window.setTimeout(() => {
+        setTransition(cardButton, "opacity 600ms ease-out");
+        setOpacity(cardButton, 1);
+      }, 1300);
+    }
+
+    lineItems.forEach((element, index) => {
+      window.setTimeout(() => {
+        element.style.transition = "width 600ms ease";
+        setWidth(element, 0);
+      }, 1700 + index * 100);
+    });
+  }
+
+  initCreatorIntoViewState();
+  initCreatorScrollHeading();
+
+  if (card) {
+    let revealPlayed = false;
+    let rafId = 0;
+    let wasInView = false;
+    let wasInRevealZone = false;
+
+    function checkCreatorEntry() {
+      rafId = 0;
+      const rect = card.getBoundingClientRect();
+      const viewportHeight = window.innerHeight || 0;
+      const isInView = rect.top <= viewportHeight && rect.bottom >= 0;
+      const isInRevealZone =
+        rect.top <= viewportHeight * 0.7 && rect.bottom >= 0;
+
+      if (!wasInView && isInView) {
+        playBatteryFlash();
+        playGlobusRotation();
+      }
+
+      if (wasInView && !isInView) {
+        stopBatteryFlash();
+        stopGlobusRotation();
+      }
+
+      if (!revealPlayed && !wasInRevealZone && isInRevealZone) {
+        revealPlayed = true;
+        playCreatorCardReveal();
+      }
+
+      wasInView = isInView;
+      wasInRevealZone = isInRevealZone;
+
+    }
+
+    function requestCheckCreatorEntry() {
+      if (rafId) return;
+      rafId = requestAnimationFrame(checkCreatorEntry);
+    }
+
+    checkCreatorEntry();
+    window.addEventListener("scroll", requestCheckCreatorEntry, { passive: true });
+    window.addEventListener("resize", requestCheckCreatorEntry);
+  }
+}
+
 function initLenisAndScrollLock() {
   if (typeof Lenis !== "function") return;
 
@@ -1463,6 +1681,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initFirstScreenState();
   initFirstScreenScrollEffects();
   initAboutCardsParallax();
+  initCreatorSectionAnimations();
   initNoiseAnimation();
   initRuntimeLotties();
   initInteractiveLotties();
