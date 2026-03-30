@@ -1,19 +1,6 @@
-type LenisInstance = {
-  raf: (time: number) => void;
-  stop: () => void;
-  start: () => void;
-};
-
-type LenisConstructor = new () => LenisInstance;
-
-function getLenisConstructor() {
-  return (window as Window & { Lenis?: LenisConstructor }).Lenis;
-}
+import Lenis from "lenis";
 
 export function initLenisAndScrollLock() {
-  const Lenis = getLenisConstructor();
-  if (!Lenis) return;
-
   const lenis = new Lenis();
   const preloader = document.querySelector<HTMLElement>(".preloader");
   const runtimeWindow = window as Window & {

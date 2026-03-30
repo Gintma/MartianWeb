@@ -57,13 +57,14 @@ npm run preview
 
 - 现有页面仍然保留原活动页 DOM 结构，先保证视觉和交互不掉
 - `index.html` 已经不再直接硬绑旧 CSS/JS，改由 `src/main.ts` 接管入口
-- `src/main.ts` 当前负责挂载新拆分后的样式，并顺序加载本地 vendor 依赖
+- `src/main.ts` 当前直接初始化新拆分后的样式与运行时模块
 - `Hero` 首屏的 preloader、第一页初始态、首屏滚动联动、噪点层和首屏观察器已经迁到 `src/sections/hero`
 - `About` 第二屏卡片视差和 `Creator` 第三屏标题/电池/地球/卡片展开已经迁到 `src/sections/about` 与 `src/sections/creator`
 - `Variable_1 / Symbols / Variable_2 / Demo_1 / Demo_2 / Footer` 的滚动、底部文案、text controls、dropdown、Lottie scroll、漂浮、hover 与 footer cards 逻辑已经迁到对应的 `src/sections/*`
 - 菜单弹层、burger 开合、popup item hover 已经迁到 `src/shared/menu-popup`
 - `vh fix`、selector blocks、scrollTrigger body attributes、`ic-plus` 滚动也已经迁到 `src/shared/*`
 - `Lenis` 滚动锁、runtime Lottie 初始化、interactive Lottie、canvas flames 已经迁到 `src/shared/*`
+- `Lenis` 和 `lottie-web` 已改为 npm 依赖，不再从本地 `.min.js` 动态加载
 - 旧的 `assets/custom-runtime.js` / `assets/main.js` / `assets/proto-app.js` 已移除，不再参与页面行为
 - 样式拆分已经开始，按钮样式迁到 `src/styles/shared/buttons.css`，菜单样式迁到 `src/styles/shared/menu.css`，字体系迁到 `src/styles/shared/typography.css`，shared trigger/state 迁到 `src/styles/shared/triggers.css`，首屏与 preloader 主体迁到 `src/styles/sections/hero.css`，`about` 样式迁到 `src/styles/sections/about.css`，`creator` 样式迁到 `src/styles/sections/creator.css`，`demo_1` 样式迁到 `src/styles/sections/demo1.css`，`variable_1` 样式迁到 `src/styles/sections/variable1.css`，`demo_3` 样式迁到 `src/styles/sections/demo3.css`，`symbols` 样式迁到 `src/styles/sections/symbols.css`，`variable_2` 样式迁到 `src/styles/sections/variable2.css`，`demo_2` 样式迁到 `src/styles/sections/demo2.css`，footer 样式迁到 `src/styles/sections/footer.css`
 - 共享基础样式迁到 `src/styles/shared/base.css` 与 `src/styles/shared/chrome.css`

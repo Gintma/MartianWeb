@@ -1,37 +1,23 @@
-type LottieAnimation = {
-  setDirection: (direction: number) => void;
-  goToAndPlay: (value: number, isFrame: boolean) => void;
-};
+import lottie, { type AnimationItem, type RendererType } from "lottie-web";
 
 type LottieElement = HTMLElement & {
-  __martianLottie?: LottieAnimation;
+  __martianLottie?: AnimationItem;
 };
 
-type LottieGlobal = {
-  loadAnimation: (config: {
-    container: Element;
-    renderer: string;
-    loop: boolean;
-    autoplay: boolean;
-    path: string;
-  }) => LottieAnimation;
-};
-
-function getLottieGlobal() {
-  return (window as Window & { lottie?: LottieGlobal }).lottie;
+function getRendererType(element: HTMLElement): RendererType {
+  const renderer = element.getAttribute("data-lottie-renderer");
+  if (renderer === "canvas" || renderer === "html") return renderer;
+  return "svg";
 }
 
 export function initRuntimeLotties() {
-  const lottie = getLottieGlobal();
-  if (!lottie) return;
-
   document.querySelectorAll<HTMLElement>("[data-runtime-lottie]").forEach((element) => {
     const path = element.getAttribute("data-lottie-src");
     if (!path) return;
 
     const animation = lottie.loadAnimation({
       container: element,
-      renderer: element.getAttribute("data-lottie-renderer") || "svg",
+      renderer: getRendererType(element),
       loop: element.getAttribute("data-lottie-loop") !== "0",
       autoplay: element.getAttribute("data-lottie-autoplay") !== "0",
       path,
@@ -47,9 +33,6 @@ export function initRuntimeLotties() {
 }
 
 export function initInteractiveLotties() {
-  const lottie = getLottieGlobal();
-  if (!lottie) return;
-
   const interactiveNodes = document.querySelectorAll<HTMLElement>(
     '[data-runtime-lottie="interactive"]',
   );
@@ -76,7 +59,7 @@ export function initInteractiveLotties() {
 
     const animation = lottie.loadAnimation({
       container: element,
-      renderer: element.getAttribute("data-lottie-renderer") || "svg",
+      renderer: getRendererType(element),
       loop: element.getAttribute("data-lottie-loop") !== "0",
       autoplay: false,
       path: element.getAttribute("data-lottie-src") || "",

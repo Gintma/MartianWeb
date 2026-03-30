@@ -20,40 +20,6 @@ import { initFooterSection } from "./sections/footer";
 
 const root = document.documentElement;
 
-const legacyScriptSources = [
-  "/assets/lenis.min.js",
-  "/assets/lottie.min.js",
-];
-
-function loadClassicScript(src: string): Promise<void> {
-  const existing = document.querySelector<HTMLScriptElement>(
-    `script[src="${src}"]`,
-  );
-  if (existing) return Promise.resolve();
-
-  return new Promise((resolve, reject) => {
-    const script = document.createElement("script");
-    script.src = src;
-    script.async = false;
-    script.onload = () => resolve();
-    script.onerror = () => reject(new Error(`Failed to load ${src}`));
-    document.body.appendChild(script);
-  });
-}
-
-async function bootLegacyRuntime() {
-  for (const src of legacyScriptSources) {
-    // Preserve runtime order for vendor globals consumed by shared modules.
-    await loadClassicScript(src);
-  }
-}
-
-function initPostVendorModules() {
-  initRuntimeLotties();
-  initInteractiveLotties();
-  initLenisAndScrollLock();
-}
-
 function initAppModules() {
   initButtonHoverEffects();
   initAnchorLinks();
@@ -72,14 +38,14 @@ function initAppModules() {
   initDemo1Section();
   initDemo2Section();
   initFooterSection();
+  initRuntimeLotties();
+  initInteractiveLotties();
+  initLenisAndScrollLock();
 }
 
 root.dataset.app = "vite";
 
 initAppModules();
-void bootLegacyRuntime().then(() => {
-  initPostVendorModules();
-});
 
 if (import.meta.env.DEV) {
   console.info("[app] Vite entry attached");
