@@ -1,0 +1,443 @@
+.s2 {
+  z-index: 2;
+  background-color: var(--black);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: -30vw;
+  padding-bottom: 19vw;
+  display: flex;
+  position: relative;
+  overflow: visible;
+}
+
+.s2__circle-bg {
+  z-index: 1;
+  background-color: #000;
+  border-radius: 100vw;
+  width: 120.278vw;
+  height: 120.278vw;
+  position: absolute;
+  inset: 7% -10% auto;
+}
+
+.s2__container-h {
+  z-index: 2;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  width: 91vw;
+  margin-bottom: 9.72222vw;
+  display: flex;
+  position: relative;
+}
+
+.s2__container-p {
+  width: 27.0833rem;
+  margin-top: 1.38vw;
+}
+
+.s1__container-p-b {
+  z-index: 4;
+  text-align: center;
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 13.4028vw;
+  margin-bottom: 9.1vw;
+  display: flex;
+  position: static;
+  inset: 0% auto auto;
+}
+
+.s1__container-p-b-mask {
+  overflow: hidden;
+}
+
+.s2__cards {
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  padding-left: 20.5vw;
+  padding-right: 20.5vw;
+  display: flex;
+  position: relative;
+}
+
+.s2__card-container {
+  width: 100%;
+  margin-bottom: -13vw;
+  display: flex;
+}
+
+.s2__card-container.align {
+  justify-content: flex-end;
+}
+
+.s2__card-container._1 {
+  z-index: 1;
+  position: relative;
+}
+
+.s2__card-container._2 {
+  z-index: 2;
+  position: relative;
+}
+
+.s2__card-container._3 {
+  z-index: 3;
+  position: relative;
+}
+
+.s2__card-container._4 {
+  z-index: 4;
+  position: relative;
+}
+
+.s2__card-item {
+  text-align: center;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 30.0694vw;
+  padding: 2vw 2.7vw;
+  display: flex;
+  position: relative;
+}
+
+.s2__card-h {
+  z-index: 2;
+  text-align: left;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2vw;
+  display: flex;
+  position: relative;
+}
+
+.s2__card-h.margin-15 {
+  margin-top: .8vw;
+}
+
+.s2__card-circle {
+  background-color: var(--orange);
+  border-radius: 100%;
+  width: .555556vw;
+  height: .555556vw;
+  margin-right: .625vw;
+}
+
+.s2__card-img {
+  z-index: 2;
+  object-fit: contain;
+  width: 24.6528vw;
+  height: 17.7083vw;
+  position: relative;
+}
+
+.s2__card-p {
+  z-index: 2;
+  min-height: 11.6667rem;
+  margin-top: 1vw;
+  position: relative;
+}
+
+.s2__card-bg {
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0%;
+}
+
+.s2__card-bg-img-1 {
+  z-index: 1;
+  width: 67px;
+  height: 130px;
+  position: absolute;
+  inset: 0% auto auto 0%;
+}
+
+.s2__card-bg-img-2 {
+  z-index: 1;
+  width: 67px;
+  height: 130px;
+  position: absolute;
+  inset: 0% 0% auto auto;
+}
+
+.s2__card-bg-img-3 {
+  z-index: 1;
+  width: 67px;
+  height: 67px;
+  position: absolute;
+  inset: auto auto 0% 0%;
+}
+
+.s2__card-bg-img-4 {
+  z-index: 1;
+  width: 67px;
+  height: 67px;
+  position: absolute;
+  inset: auto 0% 0% auto;
+}
+
+.s2__battery-img {
+  z-index: 2;
+  width: 5.06944vw;
+  height: 2.01389vw;
+  position: absolute;
+  inset: auto auto 4.5vw 5vw;
+}
+
+.s2__bulb-img {
+  width: 106px;
+  height: 25px;
+  display: none;
+  position: absolute;
+  inset: 0% 45px auto auto;
+}
+
+.s2__card-bg-line-4 {
+  background-color: var(--orange);
+  width: auto;
+  height: 1px;
+  position: absolute;
+  inset: auto 135px 0% 210px;
+}
+
+.s2__card-img-line-1 {
+  background-image: url("../../../assets/mirrored/6721f8088cd6bbd9354055e1_l-1.png");
+  background-position: 50% 0;
+  background-size: 1px;
+  height: 130px;
+  position: absolute;
+  inset: 0% 67px auto;
+}
+
+.s2__card-img-line-2 {
+  background-image: url("../../../assets/mirrored/6721f8088cd6bbd9354055e2_l-2.png");
+  background-position: 50% 100%;
+  background-size: 1px;
+  height: 67px;
+  position: absolute;
+  inset: auto 67px 0%;
+}
+
+.s2__card-img-line-3 {
+  background-image: url("../../../assets/mirrored/6721f8088cd6bbd9354055e4_l-3.png");
+  background-position: 50% 100%;
+  background-size: 67px;
+  width: 67px;
+  position: absolute;
+  inset: 30px auto 67px 0%;
+}
+
+.s2__card-img-line-4 {
+  background-image: url("../../../assets/mirrored/6721f8088cd6bbd9354055e7_l-4.png");
+  background-position: 100%;
+  background-size: 67px;
+  width: 67px;
+  position: absolute;
+  inset: 130px 0% 67px auto;
+}
+
+.s2__trigger {
+  width: 3px;
+  margin-top: 30vw;
+  position: absolute;
+  inset: 50vh auto 50vh 0%;
+}
+
+.s2__circle-bg-container {
+  width: 100%;
+  height: 120.278vw;
+  display: none;
+  position: absolute;
+  inset: 0% 0% auto;
+  overflow: hidden;
+}
+
+.s2__trigger-animation-scroll {
+  height: 100vh;
+  position: absolute;
+  inset: 0% auto auto 0%;
+}
+
+.s2__card-h-orange {
+  z-index: 2;
+  text-align: left;
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 2vw;
+  margin-bottom: .8vw;
+  display: flex;
+  position: relative;
+  color: var(--orange);
+}
+
+.s2__card-h-orange.margin-15 {
+  margin-top: 1vw;
+}
+
+.s2__ic-r {
+  object-fit: cover;
+  width: 1.11111rem;
+}
+
+.s2__trigger-anchor {
+  width: 3px;
+  position: absolute;
+  inset: 10% auto 0% 0%;
+}
+
+.stars-trigger {
+  width: 10px;
+  height: 130vh;
+  position: absolute;
+  inset: 0% auto auto 0%;
+}
+
+@media screen and (max-width: 991px) {
+  .s2 {
+    z-index: 3;
+    margin-top: 19vw;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .s2__container-h {
+    width: 100%;
+    margin-bottom: 50.5556vw;
+  }
+
+  .s2__container-p {
+    width: 100%;
+    margin-top: 5.5vw;
+    padding-left: 5.5rem;
+    padding-right: 5.5rem;
+  }
+
+  .s1__container-p-b {
+    width: 30.5556vw;
+    margin-top: 0;
+    position: static;
+  }
+
+  .s2__cards {
+    padding-left: 5.5vw;
+    padding-right: 5.5vw;
+  }
+
+  .s2__card-container {
+    margin-bottom: 5.5vw;
+  }
+
+  .s2__card-item {
+    width: 100%;
+    margin-bottom: 5.5vw;
+    padding: 5.5vw 5.5vw 8.3vw;
+  }
+
+  .s1__container-p-b-mask {
+    display: flex;
+  }
+
+  .s2__card-h {
+    margin-bottom: 4.16667vw;
+    margin-left: 0;
+  }
+
+  .s2__card-circle {
+    width: 2.22222vw;
+    min-width: 2.22222vw;
+    height: 2.22222vw;
+    min-height: 2.22222vw;
+    margin-left: -10vw;
+    margin-right: 1.25vw;
+  }
+
+  .s2__card-img {
+    width: 100%;
+    height: 42.2222vw;
+  }
+
+  .s2__card-h-orange {
+    margin-top: 8.33333vw;
+    margin-bottom: 3.8vw;
+    margin-left: 0;
+  }
+
+  .s2__card-p {
+    min-height: 45.2778rem;
+    margin-top: 0;
+  }
+
+  .s2__battery-img {
+    width: 10.5556vw;
+    height: 4.16667vw;
+    bottom: 7.5vw;
+    left: 7vw;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .s2__card-bg {
+    display: none;
+  }
+
+  .s2__bulb-img {
+    width: 13vw;
+    height: 4vw;
+    right: 6.8vw;
+  }
+
+  .s2__bg-frame {
+    width: 100%;
+    display: block;
+    position: absolute;
+    inset: 0%;
+  }
+
+  .s2__bg-frame-img {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .s2__container-h {
+    margin-bottom: 50.5vw;
+  }
+
+  .s2__card-item {
+    height: 120vw;
+  }
+
+  .s2__card-bg {
+    display: none;
+  }
+
+  .s2__bulb-img {
+    width: 13vw;
+    height: 4vw;
+    right: 6.9vw;
+  }
+
+  .s2__bg-frame {
+    position: absolute;
+    inset: 0%;
+  }
+
+  .s2__bg-frame-img {
+    width: 100%;
+  }
+
+  .s2__card-h-orange {
+    width: 100%;
+  }
+}

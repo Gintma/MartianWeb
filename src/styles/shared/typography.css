@@ -1,0 +1,402 @@
+.h1-mono {
+  color: #fff;
+  letter-spacing: -1.2vw;
+  text-transform: uppercase;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-family: Martianmono Variablefont Wdth Wght, sans-serif;
+  font-size: 20.8333vw;
+  font-weight: 400;
+  line-height: 84%;
+}
+
+.h1-mono.margin-minus {
+  margin-bottom: -1vw;
+  line-height: 100%;
+}
+
+.h1-mono.s9-1,
+.h1-mono.s9-2 {
+  margin-bottom: -2vw;
+  font-size: 11vw;
+  transform: translate(0, 100%);
+}
+
+.h1-mono.s9-3 {
+  font-size: 11vw;
+  transform: translate(0, 100%);
+}
+
+.h1-mono.s9-4 {
+  margin-bottom: -2vw;
+  font-size: 11vw;
+  transform: translate(0, 100%);
+}
+
+.h1-grotesk {
+  color: #fff;
+  text-transform: uppercase;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-family: Martiangrotesk Stdrg, sans-serif;
+  font-size: 6.94444vw;
+  font-weight: 400;
+  line-height: 110%;
+}
+
+.h2-mono {
+  color: #fff;
+  letter-spacing: -.8vw;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-family: Martianmono Variablefont Wdth Wght, sans-serif;
+  font-size: 13.8vw;
+  font-weight: 400;
+  line-height: 100%;
+}
+
+.h2-mono.margin {
+  margin-top: .7vw;
+}
+
+.p-normal-mono {
+  color: var(--gray);
+  font-family: Martianmono Variablefont Wdth Wght, sans-serif;
+  font-size: .972222rem;
+  font-weight: 500;
+  line-height: 120%;
+  text-decoration: none;
+}
+
+.p-normal-mono.margin {
+  transition: color .2s;
+}
+
+.p-normal-mono.red {
+  color: var(--orange);
+}
+
+.p-caps {
+  color: var(--white);
+  text-transform: uppercase;
+  font-family: Martianmono Variablefont Wdth Wght, sans-serif;
+  font-size: .972222vw;
+  font-weight: 500;
+  line-height: 120%;
+  text-decoration: none;
+}
+
+.p-caps.align {
+  text-align: right;
+}
+
+.p-caps.orange {
+  color: var(--orange);
+  font-variation-settings: "wght" 500;
+}
+
+.p-caps.gray {
+  color: var(--gray);
+  font-variation-settings: "wght" 500;
+}
+
+.p-caps.gray.px {
+  font-size: 14px;
+}
+
+.p-caps.gray.margin {
+  margin-left: .34rem;
+  margin-right: .34rem;
+}
+
+.p-caps.px {
+  font-size: 14px;
+}
+
+.p-caps.margin-5 {
+  margin-top: .34rem;
+}
+
+.p-caps.black {
+  color: var(--black);
+}
+
+.p-caps.drop:hover {
+  color: var(--orange);
+}
+
+.p-caps.regular {
+  font-family: Martiangrotesk Vfvf, sans-serif;
+  font-weight: 300;
+}
+
+.p-big {
+  color: var(--white);
+  letter-spacing: -.05rem;
+  font-family: Martiangrotesk Stdrg, sans-serif;
+  font-size: 1.66667rem;
+  font-weight: 400;
+  line-height: 110%;
+}
+
+.p-big-caps {
+  color: var(--white);
+  letter-spacing: -.05rem;
+  text-transform: uppercase;
+  font-family: Martianmono Variablefont Wdth Wght, sans-serif;
+  font-size: 1.80556rem;
+  font-weight: 500;
+  line-height: 120%;
+}
+
+.p-big-caps.margin-15 {
+  margin-top: .9vw;
+}
+
+.p-big-caps.px {
+  font-size: 26px;
+}
+
+.p-big-caps.red {
+  color: var(--orange);
+}
+
+.p-big-caps.orange {
+  color: var(--orange);
+}
+
+.h2-grotesk {
+  color: #fff;
+  letter-spacing: -.05rem;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-family: Martiangrotesk Stdrg, sans-serif;
+  font-size: 2.43056vw;
+  font-weight: 400;
+  line-height: 110%;
+}
+
+.h3-mono {
+  color: #fff;
+  letter-spacing: 0;
+  text-transform: none;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-family: Martianmono Variablefont Wdth Wght, sans-serif;
+  font-size: 7vw;
+  font-weight: 400;
+  line-height: 100%;
+}
+
+.p-normal-grotesk {
+  letter-spacing: -.03vw;
+  text-transform: uppercase;
+  font-family: Martiangrotesk Vfvf, sans-serif;
+  font-size: .972222rem;
+  font-weight: 400;
+  line-height: 120%;
+  text-decoration: none;
+}
+
+.p-normal-grotesk.margin {
+  margin-left: .34vw;
+  margin-right: .34vw;
+  transition: color .2s;
+}
+
+.p-normal-grotesk.white {
+  color: var(--white);
+}
+
+.p-normal-grotesk.white.margin-40 {
+  margin-bottom: 2.7vw;
+}
+
+.p-normal-grotesk.white.drop:hover,
+.p-normal-grotesk.orange {
+  color: var(--orange);
+}
+
+.p-normal-grotesk.orange.margin-5 {
+  margin-top: .34rem;
+}
+
+.p-normal-grotesk.orange.size-33 {
+  margin-top: -.2vw;
+  font-size: 2.29167rem;
+}
+
+.p-normal-grotesk.margin-8 {
+  margin-bottom: .55vw;
+}
+
+.p-normal-grotesk.margin-8.white {
+  color: var(--white);
+}
+
+.p-normal-grotesk.black {
+  color: var(--black);
+}
+
+.p-normal-grotesk.gray {
+  color: var(--gray);
+}
+
+.p-normal-grotesk.gray.nargin-30 {
+  margin-bottom: 2vw;
+}
+
+.h1-mono-copy {
+  color: #fff;
+  letter-spacing: -1.5vw;
+  text-transform: uppercase;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-family: Martianmono Variablefont Wdth Wght, sans-serif;
+  font-size: 20.8333vw;
+  font-weight: 400;
+  line-height: 100%;
+}
+
+.h1-mono-copy.margin-minus {
+  margin-bottom: -1vw;
+  line-height: 100%;
+}
+
+.h1-mono-copy.s9-1,
+.h1-mono-copy.s9-2 {
+  margin-bottom: -2vw;
+  font-size: 11vw;
+  transform: translate(0, 100%);
+}
+
+.h1-mono-copy.s9-3 {
+  font-size: 11vw;
+  transform: translate(0, 100%);
+}
+
+.h1-mono-copy.s9-4 {
+  margin-bottom: -2vw;
+  font-size: 11vw;
+  transform: translate(0, 100%);
+}
+
+.p-big-mono {
+  color: #fff;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-family: Martianmono Variablefont Wdth Wght, sans-serif;
+  font-size: 6.94444vw;
+  font-weight: 500;
+  line-height: 110%;
+}
+
+.p-big-mono.margin {
+  margin-top: .7vw;
+}
+
+.p-big-mono.orange {
+  color: var(--orange);
+}
+
+.p-big-grotesk {
+  color: #fff;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-family: Martiangrotesk Vfvf, sans-serif;
+  font-size: 6.94444vw;
+  font-weight: 400;
+  line-height: 110%;
+}
+
+.p-big-grotesk.margin {
+  margin-top: .7vw;
+}
+
+.p-big-grotesk.orange {
+  color: var(--orange);
+}
+
+@media screen and (max-width: 991px) {
+  .h1-mono {
+    letter-spacing: 0;
+    font-size: 18.3333vw;
+    font-weight: 600;
+  }
+
+  .h1-mono.s9-1,
+  .h1-mono.s9-2,
+  .h1-mono.s9-3,
+  .h1-mono.s9-4 {
+    font-size: 14vw;
+  }
+
+  .h1-grotesk {
+    font-size: 10.8333vw;
+  }
+
+  .h2-mono.margin {
+    margin-top: 4.1vw;
+  }
+
+  .p-normal-mono {
+    font-size: 3.33333rem;
+  }
+
+  .p-normal-mono.margin {
+    margin-top: 2.7rem;
+    margin-bottom: 2.7rem;
+  }
+
+  .p-caps {
+    font-size: 3.33333rem;
+  }
+
+  .p-caps.gray {
+    white-space: normal;
+  }
+
+  .p-caps.gray.px,
+  .p-caps.px {
+    font-size: 3.3rem;
+  }
+
+  .p-big {
+    font-size: 4.16667rem;
+  }
+
+  .p-big-caps {
+    font-size: 6.11111rem;
+    font-weight: 400;
+  }
+
+  .p-big-caps.margin-15 {
+    margin-top: 2.7vw;
+  }
+
+  .p-big-caps.margin-15.px {
+    margin-top: 4.1rem;
+  }
+
+  .p-big-caps.px {
+    font-size: 6.1rem;
+  }
+
+  .p-big-caps.black {
+    color: var(--black);
+  }
+
+  .h2-grotesk {
+    font-size: 5vw;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .p-caps.gray {
+    white-space: normal;
+  }
+
+  .p-normal-grotesk.mob {
+    font-size: 3.3rem;
+  }
+}

@@ -1,0 +1,187 @@
+.s4 {
+  z-index: 2;
+  background-color: var(--black);
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 800vh;
+  display: block;
+  position: relative;
+  overflow: visible;
+}
+
+.s4__lottie-container {
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  position: sticky;
+  top: 0;
+}
+
+.s4__lottie-item {
+  width: 100%;
+  height: 100%;
+}
+
+.s4__lottie-item.mob {
+  display: none;
+}
+
+.s4__lottie-container-f {
+  justify-content: center;
+  align-items: center;
+  width: 80.9722vw;
+  height: 27.0833vw;
+  display: flex;
+  position: relative;
+}
+
+.s4__border-img {
+  width: 100%;
+  height: 100%;
+  display: none;
+  position: absolute;
+  inset: 0%;
+}
+
+.korner-ic {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  inset: 0 auto auto 0;
+}
+
+.korner-ic._2 {
+  inset: 0 0 auto auto;
+  transform: rotate(90deg);
+}
+
+.korner-ic._3 {
+  inset: -95% 0 0 auto;
+  transform: rotate(-180deg);
+}
+
+.korner-ic._4 {
+  inset: -95% auto 0 0;
+  transform: rotate(-90deg);
+}
+
+.korner-ic-mob {
+  width: 20px;
+  height: 20px;
+  display: none;
+  position: absolute;
+  inset: -2px auto auto -2px;
+}
+
+.korner-ic-mob-2 {
+  width: 20px;
+  height: 20px;
+  display: none;
+  position: absolute;
+  inset: -1px auto auto -1px;
+}
+
+.korner-ic-mob-4 {
+  width: 20px;
+  height: 20px;
+  display: none;
+  position: absolute;
+  inset: -1px auto auto -1px;
+}
+
+.s4__border-img-mob {
+  width: 100%;
+  height: 100%;
+  display: none;
+  position: absolute;
+  inset: 0%;
+}
+
+.bg-mob {
+  display: none;
+}
+
+.bg-mob-img {
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.bg-img-white {
+  z-index: 1;
+  opacity: 0;
+  min-width: 101%;
+  min-height: 103%;
+  position: absolute;
+  inset: -1px;
+}
+
+.s4__anchor-lottie {
+  position: absolute;
+  inset: 1% auto 0% 0%;
+}
+
+.bg-desktop {
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: absolute;
+}
+
+@media screen and (max-width: 991px) {
+  .s4 {
+    margin-top: 16.6vw;
+    margin-bottom: 16.6667vw;
+    padding-left: 2.7vw;
+    padding-right: 2.7vw;
+  }
+
+  .s4__lottie-item.mob {
+    display: block;
+  }
+
+  .s4__lottie-item.desktop {
+    display: none;
+  }
+
+  .s4__lottie-container-f {
+    width: 100%;
+    height: 88.8889vw;
+  }
+
+  .s4__border-img,
+  .korner-ic {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .korner-ic-mob {
+    top: -.5px;
+    left: -.8px;
+  }
+
+  .korner-ic-mob-2 {
+    top: 0;
+    right: 0;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .bg-mob {
+    height: 100%;
+    min-height: 103%;
+    margin-top: -2px;
+  }
+
+  .bg-desktop {
+    height: 100%;
+    min-height: 103%;
+    margin-top: -2px;
+  }
+}

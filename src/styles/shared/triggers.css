@@ -1,0 +1,35 @@
+.s2__bg-frame,
+.footer__card-bg-frame,
+.s3__card-frame {
+  display: none;
+}
+
+.s3__trigger,
+.s4__trigger,
+.s5__trigger,
+.s7__trigger,
+.s8__trigger {
+  width: 3px;
+  position: absolute;
+  inset: 50vh auto 50vh 0%;
+}
+
+.s8__trigger.hide {
+  display: none;
+}
+
+.footer__trigger {
+  background-color: var(--orange);
+  width: 3px;
+  display: none;
+  position: absolute;
+  inset: 50vh auto 50vh 0%;
+}
+
+.footer__trigger.hide {
+  display: none;
+}
+
+.text-span-opacity-0 {
+  opacity: 0;
+}

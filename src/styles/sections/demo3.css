@@ -1,0 +1,257 @@
+.s7 {
+  z-index: 2;
+  background-color: var(--black);
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 700vh;
+  padding-top: 4.16667vw;
+  padding-bottom: 0;
+  display: none;
+  position: relative;
+  overflow: visible;
+}
+
+.s7__container-h {
+  text-align: center;
+  width: 50%;
+  margin-top: 2vw;
+  margin-bottom: -8vw;
+}
+
+.s7__container-letters {
+  justify-content: space-between;
+  width: 100%;
+  margin-top: -5vw;
+  padding-left: 2.7vw;
+  padding-right: 2.7vw;
+  display: flex;
+  position: relative;
+  overflow: visible;
+}
+
+.s7-letter {
+  z-index: 3;
+  color: var(--white);
+  font-family: Martianmono Variablefont Wdth Wght, sans-serif;
+  font-size: 37.1528vw;
+  font-weight: 100;
+  line-height: 100%;
+  position: relative;
+}
+
+.s7-letter.e {
+  opacity: 0;
+  position: absolute;
+  inset: 0%;
+}
+
+.s7-letter.q {
+  opacity: 0;
+  position: absolute;
+  inset: 0%;
+  transform: scale(1);
+}
+
+.s7-letter.b {
+  opacity: 0;
+  position: absolute;
+  inset: 0%;
+}
+
+.s7-line {
+  z-index: 1;
+  width: 100%;
+  position: absolute;
+  top: 11.4vw;
+}
+
+.s7-line-2 {
+  z-index: 1;
+  width: 100%;
+  position: absolute;
+  inset: auto 0% 3.5vw;
+}
+
+.s7__circle-1 {
+  background-color: var(--orange);
+  border-radius: 100vw;
+  width: 6.25vw;
+  height: 6.25vw;
+  position: absolute;
+  inset: 15.8vw auto auto 1.6vw;
+}
+
+.s7__circle-2 {
+  background-color: var(--orange);
+  border-radius: 100vw;
+  width: 6.25vw;
+  height: 6.25vw;
+  position: absolute;
+  inset: 19.4vw auto auto 9.8vw;
+}
+
+.s7__letter-block-1,
+.s7__letter-block-2,
+.s7__letter-block-3 {
+  z-index: 2;
+  position: relative;
+}
+
+.s7__circle-3 {
+  background-color: var(--orange);
+  border-radius: 100vw;
+  width: 6.25vw;
+  height: 6.25vw;
+  position: absolute;
+  inset: auto 2.7vw 15.2vw auto;
+}
+
+.s7__circle-e {
+  background-color: var(--orange);
+  border-radius: 100vw;
+  width: 6.25vw;
+  height: 6.25vw;
+  position: absolute;
+  inset: 23.5vw 1.8vw 0% auto;
+  transform: scale(0);
+}
+
+.s7__circle-q {
+  background-color: var(--orange);
+  border-radius: 100vw;
+  width: 6.25vw;
+  height: 6.25vw;
+  position: absolute;
+  inset: 27.3vw auto auto 16.1vw;
+  transform: scale(0);
+}
+
+.s7__circle-b {
+  background-color: var(--orange);
+  border-radius: 100vw;
+  width: 6.25vw;
+  height: 6.25vw;
+  position: absolute;
+  inset: 10.7vw auto 0% 3.5vw;
+  transform: scale(0);
+}
+
+.s7__container-sticky {
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  position: sticky;
+  top: 0;
+  overflow: hidden;
+}
+
+.s7__container-letters-mobile {
+  display: none;
+}
+
+@media screen and (max-width: 991px) {
+  .s7 {
+    padding-top: 5.5vw;
+  }
+
+  .s7__container-h {
+    width: 100%;
+    margin-bottom: 0;
+    padding-left: 4vw;
+    padding-right: 4vw;
+  }
+
+  .s7__container-letters {
+    display: none;
+  }
+
+  .s7-letter.a {
+    font-size: 130vw;
+    position: absolute;
+    inset: auto;
+  }
+
+  .s7-letter.x {
+    opacity: 0;
+    font-size: 130vw;
+    position: absolute;
+    inset: auto;
+  }
+
+  .s7-letter.q {
+    opacity: 0;
+    font-size: 130vw;
+    inset: auto;
+  }
+
+  .s7-line {
+    object-fit: none;
+    height: 3px;
+    top: 32.3vw;
+  }
+
+  .s7-line-2 {
+    object-fit: none;
+    height: 3px;
+    bottom: 6.2vw;
+  }
+
+  .s7__circle-1 {
+    width: 25vw;
+    height: 25vw;
+    top: 40%;
+    left: 8%;
+  }
+
+  .s7__circle-2 {
+    opacity: 0;
+    width: 25vw;
+    height: 25vw;
+    top: 51%;
+    left: 37.5%;
+  }
+
+  .s7__circle-q {
+    opacity: 0;
+    width: 25vw;
+    height: 25vw;
+    top: 73%;
+    left: 59%;
+    transform: scale(0);
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .s7-line {
+    top: 2%;
+  }
+
+  .s7-line-2 {
+    bottom: 2%;
+  }
+
+  .s7__circle-1 {
+    top: 45%;
+    left: 8%;
+  }
+
+  .s7__circle-2 {
+    top: 50.5%;
+    left: 37.5%;
+  }
+
+  .s7__circle-q {
+    top: auto;
+    bottom: 23%;
+  }
+
+  .s7__container-lines-mobile {
+    width: 100%;
+    height: 80vw;
+    margin-bottom: -27vw;
+    position: relative;
+  }
+}
