@@ -283,7 +283,7 @@
 .mosaic {
   z-index: 999;
   pointer-events: none;
-  background-image: url("../../../assets/mirrored/6721f8088cd6bbd935405615_Mosaic.png");
+  background-image: url("../../../assets/images/demo2/mosaic.png");
   background-position: 0 0;
   background-repeat: repeat;
   background-size: cover;
@@ -668,7 +668,7 @@
 
 .s9__line-ic-center {
   border-top: 1px solid var(--orange);
-  background-image: url("../../../assets/mirrored/6721f8088cd6bbd935405625_ic-center.svg");
+  background-image: url("../../../assets/images/demo2/line-center.svg");
   background-position: 50% 0;
   background-repeat: repeat-x;
   background-size: 0;

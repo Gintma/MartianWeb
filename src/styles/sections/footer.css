@@ -173,7 +173,7 @@
 }
 
 .footer__card-bg-line-3 {
-  background-image: url("../../../assets/mirrored/6721f8088cd6bbd935405590_Vector-1.png");
+  background-image: url("../../../assets/images/footer/card-line-top-left.png");
   background-position: 50% 0;
   background-size: auto 86px;
   height: 86px;
@@ -187,7 +187,7 @@
 }
 
 .footer__card-bg-line-4 {
-  background-image: url("../../../assets/mirrored/6721f8088cd6bbd935405592_Vector-2.png");
+  background-image: url("../../../assets/images/footer/card-line-top-right.png");
   background-position: 50% 0;
   background-size: auto 86px;
   height: 86px;
@@ -201,7 +201,7 @@
 }
 
 .footer__card-bg-line-5 {
-  background-image: url("../../../assets/mirrored/6721f8088cd6bbd935405598_Vector 6.png");
+  background-image: url("../../../assets/images/footer/card-line-bottom-left.png");
   background-position: 50% 100%;
   background-size: auto 86px;
   height: 86px;
@@ -214,7 +214,7 @@
 }
 
 .footer__card-bg-line-6 {
-  background-image: url("../../../assets/mirrored/6721f8088cd6bbd935405596_Vector 7.png");
+  background-image: url("../../../assets/images/footer/card-line-bottom-right.png");
   background-position: 50% 100%;
   background-size: auto 86px;
   height: 86px;

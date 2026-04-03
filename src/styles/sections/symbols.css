@@ -120,7 +120,7 @@
 
 .selector-letter:hover {
   color: var(--white);
-  background-image: url("../../../assets/mirrored/6721f8088cd6bbd9354055b3_ic-hover.png");
+  background-image: url("../../../assets/images/symbols/selector-hover.png");
   background-position: 50%;
   background-size: cover;
 }

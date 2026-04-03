@@ -156,7 +156,7 @@
 }
 
 .footer__card-img-line-1 {
-  background-image: url("../../../assets/mirrored/6721f8088cd6bbd935405597_Vector 14187--3.png");
+  background-image: url("../../../assets/images/shared/chrome-line-left.png");
   background-position: 0%;
   background-size: 63px;
   width: 60px;
@@ -165,7 +165,7 @@
 }
 
 .footer__card-img-line-2 {
-  background-image: url("../../../assets/mirrored/6721f8088cd6bbd9354055cd_Vector 14188 -5.png");
+  background-image: url("../../../assets/images/shared/chrome-line-right.png");
   background-position: 100%;
   background-size: 63px;
   width: 63px;
