@@ -536,6 +536,15 @@
 
 
 @media screen and (max-width: 991px) {
+  .s-10 {
+    height: auto;
+  }
+
+  .sec-10 {
+    height: auto;
+    margin-bottom: 0;
+  }
+
   .container-bottom__line {
     border-bottom-right-radius: 12px;
     border-bottom-left-radius: 12px;
@@ -546,6 +555,10 @@
     padding-bottom: 2.7vw;
     padding-left: 2.7vw;
     padding-right: 2.7vw;
+  }
+
+  .container-bottom__p-items {
+    display: none !important;
   }
 
   .ic-plus {

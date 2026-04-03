@@ -148,6 +148,10 @@ const firstScreenSequenceState = {
   emptyPulseStarted: false,
 };
 
+function isMobileHero() {
+  return (window.innerWidth || 0) < 992;
+}
+
 function startEmptyIndicatorPulse() {
   if (firstScreenSequenceState.emptyPulseStarted) return;
 
@@ -208,6 +212,13 @@ function initFirstScreenState() {
   const backgroundImages = [
     document.querySelector(".s1__bg-image-1"),
     document.querySelector(".s1__bg-image-2"),
+    document.querySelector(".s1__bg-image-3"),
+    document.querySelector(".s1__bg-image-4"),
+  ].filter(Boolean);
+  const mobileMountContainers = [
+    document.querySelector(".s1__mob-mount-container-1"),
+    document.querySelector(".s1__mob-mount-container-2"),
+    document.querySelector(".s1__mob-mount-container-3"),
   ].filter(Boolean);
   const emptyItem = document.querySelector(
     ".s1__item-p-empty",
@@ -252,10 +263,22 @@ function initFirstScreenState() {
     });
   }
 
-  backgroundImages.forEach((element) => {
-    setOpacity(element, "1");
-    setTransform(element, "translate3d(0, 5%, 0) scale3d(1.2, 1.2, 1)");
-  });
+  if (isMobileHero()) {
+    backgroundImages.forEach((element, index) => {
+      setOpacity(element, "0");
+      if (index < 2) {
+        setTransform(element, "translate3d(0, 5%, 0) scale3d(1.2, 1.2, 1)");
+      }
+    });
+    mobileMountContainers.forEach((element) => setOpacity(element, "0"));
+  } else {
+    backgroundImages.forEach((element, index) => {
+      setOpacity(element, "1");
+      if (index < 2) {
+        setTransform(element, "translate3d(0, 5%, 0) scale3d(1.2, 1.2, 1)");
+      }
+    });
+  }
 
   if (emptyItem) {
     const targetWidth = emptyItem.getBoundingClientRect().width;
@@ -313,6 +336,13 @@ function playFirstScreenSequence() {
   const titleMono = document.querySelector(".s1__container-h1._2 .h1-mono");
   const backgroundImage1 = document.querySelector(".s1__bg-image-1");
   const backgroundImage2 = document.querySelector(".s1__bg-image-2");
+  const backgroundImage3 = document.querySelector(".s1__bg-image-3");
+  const backgroundImage4 = document.querySelector(".s1__bg-image-4");
+  const mobileMountContainers = [
+    document.querySelector(".s1__mob-mount-container-1"),
+    document.querySelector(".s1__mob-mount-container-2"),
+    document.querySelector(".s1__mob-mount-container-3"),
+  ].filter(Boolean);
   const emptyItem = document.querySelector(
     ".s1__item-p-empty",
   ) as HTMLElement | null;
@@ -364,6 +394,29 @@ function playFirstScreenSequence() {
     transform: "translate3d(0, 0, 0) scale3d(1, 1, 1)",
     opacity: "1",
   });
+
+  if (isMobileHero()) {
+    animateElement(backgroundImage3, {
+      delay: 300,
+      duration: 400,
+      easing: "ease-out",
+      opacity: "1",
+    });
+    animateElement(backgroundImage4, {
+      delay: 300,
+      duration: 400,
+      easing: "ease-out",
+      opacity: "1",
+    });
+    mobileMountContainers.forEach((element) => {
+      animateElement(element, {
+        delay: 300,
+        duration: 500,
+        easing: "ease",
+        opacity: "1",
+      });
+    });
+  }
 
   window.setTimeout(() => {
     if (backgroundImage1 instanceof HTMLElement) {
@@ -444,6 +497,11 @@ function initPreloaderSequence() {
 
   if (!preloader) return;
 
+  const collapseWidth =
+    preloaderBlock instanceof HTMLElement
+      ? `${preloaderBlock.getBoundingClientRect().width}px`
+      : "11.38vw";
+
   const batteryStepDuration = 800;
   const batteryPhaseDuration = batterySteps.length * batteryStepDuration;
   const collapseDuration = 500;
@@ -473,7 +531,7 @@ function initPreloaderSequence() {
     window.setTimeout(() => {
       if (preloaderBlock) {
         preloaderBlock.style.transition = "width 500ms ease, height 500ms ease";
-        preloaderBlock.style.width = "11.38vw";
+        preloaderBlock.style.width = collapseWidth;
         preloaderBlock.style.height = "100%";
       }
       if (batteryBlock) {
@@ -555,9 +613,89 @@ function initFirstSectionObservers() {
 }
 
 function initFirstScreenScrollEffects() {
-  if (window.innerWidth < 992) return;
-
   const firstTrigger = document.querySelector(".s1__scroll-animation-trigger");
+  if (isMobileHero()) {
+    const titleContainers = Array.from(
+      document.querySelectorAll(".s1__container-h1"),
+    );
+    const mount1 = document.querySelector(".s1__mob-mount-container-1");
+    const mount2 = document.querySelector(".s1__mob-mount-container-2");
+    const mount3 = document.querySelector(".s1__mob-mount-container-3");
+    if (!firstTrigger) return;
+
+    const mobileKeyframes = {
+      titleY: [
+        { progress: 0, value: 0 },
+        { progress: 1, value: 24 },
+      ],
+      mount1Y: [
+        { progress: 0, value: 0 },
+        { progress: 1, value: -30 },
+      ],
+      mount2Y: [
+        { progress: 0, value: 0 },
+        { progress: 1, value: -21 },
+      ],
+      mount3Y: [
+        { progress: 0, value: 0 },
+        { progress: 1, value: 10 },
+      ],
+    };
+
+    let rafId = 0;
+    let progressTarget = normalizeInViewProgress(firstTrigger);
+    let progressCurrent = progressTarget;
+    const smoothingFactor = 0.1;
+
+    function applyMobileTransforms() {
+      const progress = progressCurrent;
+      const titleY = resolveKeyframedValue(progress, mobileKeyframes.titleY);
+      const mount1Y = resolveKeyframedValue(progress, mobileKeyframes.mount1Y);
+      const mount2Y = resolveKeyframedValue(progress, mobileKeyframes.mount2Y);
+      const mount3Y = resolveKeyframedValue(progress, mobileKeyframes.mount3Y);
+
+      titleContainers.forEach((element) => {
+        if (!(element instanceof HTMLElement)) return;
+        element.style.transform = `translate3d(0, ${titleY}rem, 0)`;
+        element.style.willChange = "transform";
+      });
+
+      if (mount1 instanceof HTMLElement) {
+        mount1.style.transform = `translate3d(0, ${mount1Y}rem, 0)`;
+        mount1.style.willChange = "transform";
+      }
+      if (mount2 instanceof HTMLElement) {
+        mount2.style.transform = `translate3d(0, ${mount2Y}rem, 0)`;
+        mount2.style.willChange = "transform";
+      }
+      if (mount3 instanceof HTMLElement) {
+        mount3.style.transform = `translate3d(0, ${mount3Y}rem, 0)`;
+        mount3.style.willChange = "transform";
+      }
+    }
+
+    function tick() {
+      rafId = 0;
+      progressCurrent += (progressTarget - progressCurrent) * smoothingFactor;
+      const shouldContinue = Math.abs(progressTarget - progressCurrent) > 0.0005;
+      applyMobileTransforms();
+      if (shouldContinue) {
+        rafId = requestAnimationFrame(tick);
+      }
+    }
+
+    function requestApplyTransforms() {
+      progressTarget = normalizeInViewProgress(firstTrigger);
+      if (rafId) return;
+      rafId = requestAnimationFrame(tick);
+    }
+
+    applyMobileTransforms();
+    window.addEventListener("scroll", requestApplyTransforms, { passive: true });
+    window.addEventListener("resize", requestApplyTransforms);
+    return;
+  }
+
   const secondTrigger = document.querySelector(".s2__trigger-animation-scroll");
   const blackContainer = document.querySelector(".s1__bg-black-container");
   const orangeContainer = document.querySelector(".s1__bg-orange-container");

@@ -18,8 +18,6 @@ function rectIntersectsViewportBand(rect: DOMRect, offsetPercent: number) {
 }
 
 export function initSymbolsSection() {
-  if (window.innerWidth < 992) return;
-
   const section = document.querySelector(".s6");
   const frameItem1 = document.querySelector(".s6__frame-item._1");
   const frameItem2 = document.querySelector(".s6__frame-item._2");
@@ -36,6 +34,7 @@ export function initSymbolsSection() {
   if (!(section instanceof HTMLElement)) return;
 
   const outCircBezier = "cubic-bezier(0.075, 0.820, 0.165, 1)";
+  const isDesktop = window.innerWidth >= 992;
 
   function applySymbolsOutState() {
     if (frameItem1 instanceof HTMLElement) {
@@ -110,8 +109,10 @@ export function initSymbolsSection() {
     }
   }
 
-  applySymbolsOutState();
   applyBottomTextInitialState();
+  if (isDesktop) {
+    applySymbolsOutState();
+  }
 
   const targetSection = section;
   let rafId = 0;
@@ -125,14 +126,15 @@ export function initSymbolsSection() {
     const shouldStayForExit = rectIntersectsViewportBand(rect, 70);
     const shouldShowBottomText =
       bottomText instanceof HTMLElement &&
-      rectIntersectsViewportBand(bottomText.getBoundingClientRect(), 10);
+      (rectIntersectsViewportBand(bottomText.getBoundingClientRect(), 10) ||
+        (!isDesktop && shouldEnter));
 
-    if (!entered && shouldEnter) {
+    if (isDesktop && !entered && shouldEnter) {
       entered = true;
       playSymbolsIn();
     }
 
-    if (entered && !shouldStayForExit) {
+    if (isDesktop && entered && !shouldStayForExit) {
       entered = false;
       playSymbolsOut();
     }

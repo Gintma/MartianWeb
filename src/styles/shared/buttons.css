@@ -157,6 +157,34 @@
   inset: 0% auto;
 }
 
+.bg-mob {
+  display: none;
+}
+
+.bg-mob-img {
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.bg-img-white {
+  z-index: 1;
+  opacity: 0;
+  min-width: 101%;
+  min-height: 103%;
+  position: absolute;
+  inset: -1px;
+}
+
+.bg-desktop {
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: absolute;
+}
+
 .button {
   color: var(--white);
   cursor: pointer;
@@ -233,15 +261,133 @@
     width: 31.6667vw;
     margin-top: 0;
   }
-}
 
-@media screen and (max-width: 767px) {
+  .bt-black {
+    z-index: 2;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .bt-black__center {
+    justify-content: center;
+    width: 100%;
+    padding-top: 2.7vw;
+    padding-bottom: 2.7vw;
+  }
+
+  .bt-black-hover {
+    z-index: 2;
+    opacity: 1;
+    width: 100%;
+    height: 100%;
+  }
+
+  .bt-white__center {
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding-top: 2.7vw;
+    padding-bottom: 2.7vw;
+  }
+
+  .bg-mob {
+    z-index: 3;
+    object-fit: fill;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 10vw;
+    min-height: 10vw;
+    display: flex;
+    position: absolute;
+    inset: 1% 0%;
+  }
+
+  .bg-mob.hide {
+    z-index: -1;
+  }
+
+  .bg-mob-img {
+    z-index: 1;
+    object-fit: fill;
+    width: 100%;
+    height: 9.7vw;
+    min-height: 9vw;
+    position: absolute;
+    inset: 0%;
+  }
+
+  .bg-mob-relative-container {
+    z-index: 2;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    position: relative;
+  }
+
+  .bg-img-white {
+    z-index: 2;
+    object-fit: fill;
+    width: 100%;
+    height: 9.7vw;
+    min-height: 9vw;
+    position: absolute;
+    inset: 0%;
+  }
+
+  .bg-desktop {
+    z-index: 3;
+    object-fit: fill;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 10vw;
+    min-height: 10vw;
+    display: none;
+    position: absolute;
+    inset: 1% 0%;
+  }
+
+  .bg-desktop.hide {
+    z-index: -1;
+  }
+
   .bt-orange-bg {
     width: 3.61111%;
   }
 }
 
 @media screen and (max-width: 479px) {
+  .bg-mob {
+    height: 100%;
+    min-height: 103%;
+    margin-top: -2px;
+  }
+
+  .bg-desktop {
+    height: 100%;
+    min-height: 103%;
+    margin-top: -2px;
+  }
+
+  .bt-orange-bg {
+    opacity: 0;
+    object-fit: fill;
+    width: 100%;
+    height: 9.72222vw;
+    min-height: 9.72222vw;
+    max-height: 9.72222vw;
+  }
+
+  .bt-orange-bg-2 {
+    opacity: 0;
+    object-fit: fill;
+    width: 3.61111vw;
+    height: 9.72222vw;
+    min-height: 9.72222vw;
+  }
+
   .bt-orange__center {
     height: 70%;
     min-height: 70%;

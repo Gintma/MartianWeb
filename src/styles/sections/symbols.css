@@ -341,6 +341,230 @@
 }
 
 @media screen and (max-width: 991px) {
+  .s6__head-t-l {
+    width: 100%;
+  }
+
+  .s6__head-t-r {
+    width: 100%;
+    margin-top: 2vw;
+  }
+
+  .s6__container-bottom-text {
+    margin-bottom: 5.9rem;
+    display: flex;
+  }
+
+}
+
+@media screen and (max-width: 767px) {
+  .s6__section {
+    flex-flow: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: calc(50vh + 17.4rem);
+    padding-bottom: 5vh;
+    display: flex;
+    overflow: hidden;
+  }
+
+  .selector-block {
+    padding-left: 4.1rem;
+    padding-right: 4.1rem;
+  }
+
+  .s6__head {
+    justify-content: flex-end;
+    align-items: center;
+    height: 26rem;
+    padding-top: 0;
+    position: absolute;
+    inset: 0% 0% auto;
+  }
+
+  .selector {
+    padding-bottom: 10rem;
+  }
+
+  .selector-head {
+    margin-top: 8rem;
+    margin-bottom: 4.4rem;
+    padding-left: 3vw;
+    font-size: 2.8rem;
+  }
+
+  .s6 .show {
+    font-size: 26vw;
+  }
+
+  .selector-letter-sec {
+    grid-column-gap: 4rem;
+    grid-row-gap: 4rem;
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .selector-letter {
+    font-size: 2.5rem;
+  }
+
+  .selector-letter:hover {
+    background-image: none;
+    background-position: 0 0;
+    background-size: auto;
+  }
+
+  .s6__sticky-wrapper {
+    height: 100vh;
+    padding-bottom: 0;
+    overflow: visible;
+  }
+
+  .s6__glyph-container {
+    z-index: 10;
+    grid-column-gap: 2.7rem;
+    grid-row-gap: 2.7rem;
+    pointer-events: none;
+    grid-template-rows: auto auto;
+    grid-template-columns: 1fr;
+    height: 100vh;
+    padding-top: 32rem;
+    padding-bottom: 10rem;
+  }
+
+  .s6__head-t {
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    padding-left: 5.5vw;
+    padding-right: 5.5vw;
+  }
+
+  .s6__head-t.margin {
+    margin-top: 2.2rem;
+  }
+
+  .s6__p-caps {
+    font-size: 3.33333rem;
+  }
+
+  .s6__p-caps:hover {
+    color: var(--gray);
+  }
+
+  .s6__p-caps.gray.px,
+  .s6__p-caps.px {
+    font-size: 3.3rem;
+  }
+
+  .s6__frame {
+    z-index: 3;
+    grid-column-gap: 2.7rem;
+    grid-row-gap: 2.7rem;
+    pointer-events: none;
+    flex-direction: column;
+    grid-template-rows: auto auto;
+    grid-template-columns: 1fr;
+    grid-auto-columns: 1fr;
+    grid-auto-flow: column;
+    place-items: start stretch;
+    height: 100vh;
+    padding: 32rem 2.7rem 10rem;
+    display: grid;
+    inset: 0%;
+  }
+
+  .s6__frame-item._2 {
+    width: 100%;
+    height: 100%;
+    margin-top: 0;
+  }
+
+  .s6__frame-item._1 {
+    width: 100%;
+    height: 100%;
+    margin-right: 0;
+  }
+
+  .s6__bg-lines {
+    z-index: 1;
+    pointer-events: none;
+    height: 100vh;
+    padding-top: 32rem;
+    padding-bottom: 10rem;
+  }
+
+  .s6__bg-line-item-top {
+    z-index: 2;
+    pointer-events: auto;
+    height: 37rem;
+    position: absolute;
+    inset: 0% 0% auto;
+  }
+
+  .s6__bg-line-item-bottom {
+    pointer-events: auto;
+    height: calc(50% + 5.2rem);
+    position: relative;
+  }
+
+  .s6__bg-line-item-bottom._2 {
+    pointer-events: auto;
+    height: 14rem;
+    display: block;
+    position: absolute;
+    inset: auto 0% 0%;
+  }
+
+  .s6__frame-item-gradient {
+    height: 8vw;
+    top: 28px;
+  }
+
+  .s6__frame-item-gradient-b {
+    height: 8vw;
+    bottom: 28px;
+  }
+
+  .s6__container-bottom {
+    width: 43vw;
+    margin-bottom: 0;
+    top: auto;
+    bottom: 0;
+  }
+
+  .s6__wrapper-section {
+    width: 100%;
+  }
+
+  .s6__head-t-l {
+    width: 100%;
+  }
+
+  .s6__head-t-r {
+    width: 100%;
+    margin-top: 2vw;
+  }
+
+  .s6__container-bottom-text {
+    width: 100%;
+    margin-bottom: 0;
+    display: none;
+    top: auto;
+    bottom: 0;
+  }
+
+  .s6__container-bottom-text.mob {
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0;
+    display: none;
+    position: absolute;
+    inset: auto 0% 0%;
+  }
+}
+
+@media screen and (max-width: 479px) {
   .s6__head {
     height: 32rem;
   }
@@ -386,13 +610,8 @@
     z-index: 2;
   }
 
-  .s6__head-t-l {
-    width: 100%;
-  }
-
   .s6__head-t-r {
-    width: 100%;
-    margin-top: 2vw;
+    margin-top: 3vw;
   }
 
   .s6__container-bottom-text {
@@ -412,13 +631,8 @@
   }
 
   #glyph-selector {
+    grid-area: 2 / 1 / 3 / 3;
     grid-row: 2 / 3;
     grid-column-start: 1;
-  }
-}
-
-@media screen and (max-width: 479px) {
-  #glyph-selector {
-    grid-area: 2 / 1 / 3 / 3;
   }
 }

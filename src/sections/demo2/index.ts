@@ -302,7 +302,7 @@ export function initDemo2Section() {
     });
   }
 
-  function updateFloatingItem(item: FloatingItem, inView: boolean) {
+  function updateFloatingItem(item: FloatingItem, inView: boolean, deltaMs: number) {
     if (!inView) {
       item.progress = 0;
       item.direction = 1;
@@ -310,7 +310,7 @@ export function initDemo2Section() {
       return;
     }
 
-    item.progress += item.direction * (16 / 4000);
+    item.progress += item.direction * (deltaMs / 4000);
     if (item.progress >= 1) {
       item.progress = 1;
       item.direction = -1;
@@ -423,11 +423,17 @@ export function initDemo2Section() {
     requestApplyDemo2SectionAnimations();
   }
 
-  function animateFloatingItems() {
+  let lastFloatingFrame = 0;
+
+  function animateFloatingItems(timestamp: number) {
+    const deltaMs =
+      lastFloatingFrame > 0 ? Math.min(timestamp - lastFloatingFrame, 48) : 16;
+    lastFloatingFrame = timestamp;
+
     floatingItems.forEach((item) => {
       const rect = item.element.getBoundingClientRect();
       const inView = rect.bottom >= 0 && rect.top <= (window.innerHeight || 0);
-      updateFloatingItem(item, inView);
+      updateFloatingItem(item, inView, deltaMs);
     });
 
     requestAnimationFrame(animateFloatingItems);

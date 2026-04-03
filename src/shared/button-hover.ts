@@ -5,14 +5,14 @@ function bindOpacityHover(
 ) {
   const isDesktop = (window.innerWidth || 0) >= 992;
 
+  if (!isDesktop) return;
+
   document.querySelectorAll<HTMLElement>(selector).forEach((button) => {
     const hoverLayer = button.querySelector<HTMLElement>(hoverSelector);
     if (!hoverLayer) return;
 
     hoverLayer.style.opacity = "0";
     hoverLayer.style.transition = transition;
-
-    if (!isDesktop) return;
 
     button.addEventListener("mouseenter", () => {
       hoverLayer.style.opacity = "1";

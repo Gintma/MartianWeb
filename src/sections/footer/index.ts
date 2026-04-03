@@ -40,6 +40,24 @@ export function initFooterSection() {
     footerContainer.querySelectorAll<HTMLElement>(".footer__card-item"),
   );
 
+  function resetMobileFooterStyles() {
+    if (leftCard) {
+      leftCard.style.transform = "";
+    }
+    if (rightCard) {
+      rightCard.style.transform = "";
+    }
+    if (blackLeft) {
+      blackLeft.style.opacity = "";
+    }
+    if (rightLine) {
+      rightLine.style.opacity = "";
+    }
+    if (footerLinks) {
+      footerLinks.style.opacity = "";
+    }
+  }
+
   footerCards.forEach((card) => {
     const hoverLayer = card.querySelector<HTMLElement>(".bt-orange__hover");
     const monoTitle = card.querySelector<HTMLElement>(".p-big-mono");
@@ -130,6 +148,10 @@ export function initFooterSection() {
 
   function applyFooterAnimations() {
     rafId = 0;
+    if (window.innerWidth < 992) {
+      resetMobileFooterStyles();
+      return;
+    }
     renderFooterAnimations(getFooterTargetProgress());
   }
 
@@ -138,7 +160,11 @@ export function initFooterSection() {
     rafId = requestAnimationFrame(applyFooterAnimations);
   }
 
-  renderFooterAnimations(getFooterTargetProgress());
+  if (window.innerWidth >= 992) {
+    renderFooterAnimations(getFooterTargetProgress());
+  } else {
+    resetMobileFooterStyles();
+  }
   window.addEventListener("scroll", requestApplyFooterAnimations, {
     passive: true,
   });

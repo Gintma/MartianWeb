@@ -334,6 +334,60 @@
     position: relative;
   }
 
+  .menu-popup {
+    width: 100%;
+    padding-left: 2.7vw;
+    padding-right: 2.7vw;
+    display: none;
+  }
+
+  .menu-popup__img-top,
+  .menu-popup__img-bottom {
+    display: none;
+  }
+
+  .popup-menu__contaner-item {
+    width: 100%;
+    margin-left: 0;
+    padding-left: 4.1vw;
+    padding-right: 2.7vw;
+    display: flex;
+    bottom: 8vw;
+  }
+
+  .popup-menu__container-bottom {
+    height: 10.2778vw;
+    padding-bottom: 2.7vw;
+    padding-left: 2.7vw;
+    padding-right: 2.7vw;
+    display: none;
+  }
+
+  .menu-popup__item-p._11 {
+    display: block;
+  }
+
+  .menu__bt-burger-line-2 {
+    margin-top: 1.66vw;
+    margin-bottom: 1.66vw;
+  }
+
+  .menu-popup__img-top-mob,
+  .menu-popup__img-bottom-mob {
+    height: 141.389vw;
+    display: block;
+  }
+
+  .menu-popup__img-top-line-mob {
+    height: 5.5vw;
+    display: block;
+  }
+
+  .menu-popup__img-bottom-line-mob {
+    height: 5vw;
+    display: block;
+  }
+
 }
 
 @media screen and (max-width: 479px) {

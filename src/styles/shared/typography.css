@@ -370,6 +370,36 @@
     font-weight: 400;
   }
 
+  .p-normal-grotesk {
+    font-size: 3.33333rem;
+  }
+
+  .p-normal-grotesk.margin {
+    margin-top: 2.7rem;
+    margin-bottom: 2.7rem;
+  }
+
+  .p-normal-grotesk.white.margin-40 {
+    margin-bottom: 8.33333vw;
+  }
+
+  .p-normal-grotesk.white.relative {
+    z-index: 1;
+    position: relative;
+  }
+
+  .p-normal-grotesk.orange.size-33 {
+    font-size: 6.94444rem;
+  }
+
+  .p-normal-grotesk.margin-8.white {
+    margin-bottom: 3.8vw;
+  }
+
+  .p-normal-grotesk.mob {
+    font-size: 2.5rem;
+  }
+
   .p-big-caps.margin-15 {
     margin-top: 2.7vw;
   }
@@ -384,6 +414,22 @@
 
   .p-big-caps.black {
     color: var(--black);
+  }
+
+  .p-big-mono {
+    font-size: 11.1vw;
+  }
+
+  .p-big-mono.margin {
+    margin-top: 4.1vw;
+  }
+
+  .p-big-grotesk {
+    font-size: 11.1vw;
+  }
+
+  .p-big-grotesk.margin {
+    margin-top: 4.1vw;
   }
 
   .h2-grotesk {

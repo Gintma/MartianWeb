@@ -311,6 +311,12 @@
     padding-bottom: 0;
   }
 
+  .s2__bg-black-div {
+    background-color: var(--black);
+    position: absolute;
+    inset: 7% 0% 0%;
+  }
+
   .s2__container-h {
     width: 100%;
     margin-bottom: 50.5556vw;
