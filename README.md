@@ -1,6 +1,13 @@
 # Martian
 
 `Martian` 是一个基于 `Martian Mono` / `Martian Grotesk` 视觉语言重建的单页展示网站。
+<h2>🎬 Demo</h2>
+
+<p align="center">
+  <a href="https://www.bilibili.com/video/BV1s1SSBzEgH/">
+    <img src="https://i0.hdslb.com/bfs/archive/93f3a2d95014791b74521b3f41ff27a7234a36bd.jpg@308w_174h" width="800"/>
+  </a>
+</p>
 
 网站包含：
 - 首屏加载与分层背景动画
